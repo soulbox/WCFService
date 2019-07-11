@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B840FCD-269F-4DAF-966D-3F926E12E35B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entity</RootNamespace>
+    <AssemblyName>Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BildirmTipi.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCollecterModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataCollecterModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCollecterModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCollecterModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataCollecterModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataLevel.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataPointSet.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataValue.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceSet.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EczaDeposu.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EtiketCihazı.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Etiketler.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Firma.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaKoli.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaKoliClient.cs">
+      <DependentUpon>ITS_Client.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaPalet.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaPaletClient.cs">
+      <DependentUpon>ITS_Client.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaShrink.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaShrinkClient.cs">
+      <DependentUpon>ITS_Client.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaÜrün.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FirmaÜrünClient.cs">
+      <DependentUpon>ITS_Client.tt</DependentUpon>
+    </Compile>
+    <Compile Include="inkjet.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITS_Client.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ITS_Client.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITS_Client.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ITS_Client.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITS_Client.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ITS_Client.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ITS_Server.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ITS_Server.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITS_Server.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ITS_Server.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ITS_Server.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="işemriListele.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kamera.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KullanıcılarıAdSoyadaGöreListele.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Makinalar.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PLC.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rapor.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Satış.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transfer.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMakina.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserPermission.cs">
+      <DependentUpon>DataCollecterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ürünler.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="İşEmri.cs">
+      <DependentUpon>ITS_Server.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="DataCollecterModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataCollecterModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataCollecterModel.edmx.diagram">
+      <DependentUpon>DataCollecterModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="ITS_Server.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ITS_Server.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="ITS_Client.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ITS_Client.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ITS_Client.edmx.diagram">
+      <DependentUpon>ITS_Client.edmx</DependentUpon>
+    </None>
+    <None Include="ITS_Server.edmx.diagram">
+      <DependentUpon>ITS_Server.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataCollecterModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataCollecterModel.edmx</DependentUpon>
+      <LastGenOutput>DataCollecterModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataCollecterModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataCollecterModel.edmx</DependentUpon>
+      <LastGenOutput>DataCollecterModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="ITS_Client.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ITS_Client.edmx</DependentUpon>
+      <LastGenOutput>ITS_Client.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ITS_Client.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ITS_Client.edmx</DependentUpon>
+      <LastGenOutput>ITS_Client.cs</LastGenOutput>
+    </Content>
+    <Content Include="ITS_Server.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ITS_Server.edmx</DependentUpon>
+      <LastGenOutput>ITS_Server.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ITS_Server.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ITS_Server.edmx</DependentUpon>
+      <LastGenOutput>ITS_Server.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

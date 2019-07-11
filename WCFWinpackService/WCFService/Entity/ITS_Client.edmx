@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ITS_ClientModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FirmaKoliClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isemriId" Type="int" Nullable="false" />
+          <Property Name="FirmaPaletId" Type="int" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FirmaPaletClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isEmriId" Type="int" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FirmaShrinkClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isemriId" Type="int" Nullable="false" />
+          <Property Name="FirmaPaletId" Type="int" Nullable="false" />
+          <Property Name="FirmaKoliId" Type="int" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FirmaÜrünClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="decimal" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isEmriId" Type="int" Nullable="false" />
+          <Property Name="FirmaPaletId" Type="int" />
+          <Property Name="FirmaKoliId" Type="int" />
+          <Property Name="FirmaShrinkId" Type="int" />
+          <Property Name="GTN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SKT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SN" Type="bigint" Nullable="false" />
+          <Property Name="LOT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ShrinkKarekod" Type="varchar" MaxLength="20" />
+          <Property Name="KoliKarekod" Type="varchar" MaxLength="20" />
+          <Property Name="PaletKarekod" Type="varchar" MaxLength="20" />
+          <Property Name="tarih" Type="datetime" />
+          <Property Name="MaxShrink" Type="int" Nullable="false" />
+          <Property Name="MaxKoli" Type="int" Nullable="false" />
+          <Property Name="MaxPalet" Type="int" Nullable="false" />
+          <Property Name="UsersID" Type="int" Nullable="false" />
+          <Property Name="MakinaNo" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Client_FirmaKoli_FirmaPalet">
+          <End Role="FirmaPaletClient" Type="Self.FirmaPaletClient" Multiplicity="1" />
+          <End Role="FirmaKoliClient" Type="Self.FirmaKoliClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaPaletClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaKoliClient">
+              <PropertyRef Name="FirmaPaletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_FirmaShrink_FirmaPalet">
+          <End Role="FirmaPaletClient" Type="Self.FirmaPaletClient" Multiplicity="1" />
+          <End Role="FirmaShrinkClient" Type="Self.FirmaShrinkClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaPaletClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaShrinkClient">
+              <PropertyRef Name="FirmaPaletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_FirmaÜrün_FirmaPalet">
+          <End Role="FirmaPaletClient" Type="Self.FirmaPaletClient" Multiplicity="0..1" />
+          <End Role="FirmaÜrünClient" Type="Self.FirmaÜrünClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaPaletClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrünClient">
+              <PropertyRef Name="FirmaPaletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientFirmaÜrün_FirmaKoli">
+          <End Role="FirmaKoliClient" Type="Self.FirmaKoliClient" Multiplicity="0..1" />
+          <End Role="FirmaÜrünClient" Type="Self.FirmaÜrünClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaKoliClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrünClient">
+              <PropertyRef Name="FirmaKoliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientKoliShrink">
+          <End Role="FirmaKoliClient" Type="Self.FirmaKoliClient" Multiplicity="1" />
+          <End Role="FirmaShrinkClient" Type="Self.FirmaShrinkClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaKoliClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaShrinkClient">
+              <PropertyRef Name="FirmaKoliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientShrinkÜrün">
+          <End Role="FirmaShrinkClient" Type="Self.FirmaShrinkClient" Multiplicity="0..1" />
+          <End Role="FirmaÜrünClient" Type="Self.FirmaÜrünClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaShrinkClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrünClient">
+              <PropertyRef Name="FirmaShrinkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITS_ClientModelStoreContainer">
+          <EntitySet Name="FirmaKoliClient" EntityType="Self.FirmaKoliClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaPaletClient" EntityType="Self.FirmaPaletClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaShrinkClient" EntityType="Self.FirmaShrinkClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaÜrünClient" EntityType="Self.FirmaÜrünClient" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_FirmaKoli_FirmaPalet" Association="Self.FK_Client_FirmaKoli_FirmaPalet">
+            <End Role="FirmaPaletClient" EntitySet="FirmaPaletClient" />
+            <End Role="FirmaKoliClient" EntitySet="FirmaKoliClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_FirmaShrink_FirmaPalet" Association="Self.FK_Client_FirmaShrink_FirmaPalet">
+            <End Role="FirmaPaletClient" EntitySet="FirmaPaletClient" />
+            <End Role="FirmaShrinkClient" EntitySet="FirmaShrinkClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_FirmaÜrün_FirmaPalet" Association="Self.FK_Client_FirmaÜrün_FirmaPalet">
+            <End Role="FirmaPaletClient" EntitySet="FirmaPaletClient" />
+            <End Role="FirmaÜrünClient" EntitySet="FirmaÜrünClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientFirmaÜrün_FirmaKoli" Association="Self.FK_ClientFirmaÜrün_FirmaKoli">
+            <End Role="FirmaKoliClient" EntitySet="FirmaKoliClient" />
+            <End Role="FirmaÜrünClient" EntitySet="FirmaÜrünClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientKoliShrink" Association="Self.FK_ClientKoliShrink">
+            <End Role="FirmaKoliClient" EntitySet="FirmaKoliClient" />
+            <End Role="FirmaShrinkClient" EntitySet="FirmaShrinkClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientShrinkÜrün" Association="Self.FK_ClientShrinkÜrün">
+            <End Role="FirmaShrinkClient" EntitySet="FirmaShrinkClient" />
+            <End Role="FirmaÜrünClient" EntitySet="FirmaÜrünClient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITS_ClientModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FirmaKoliClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isemriId" Type="Int32" Nullable="false" />
+          <Property Name="FirmaPaletId" Type="Int32" Nullable="false" />
+          <Property Name="Etiket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FirmaPaletClient" Relationship="Self.FK_Client_FirmaKoli_FirmaPalet" FromRole="FirmaKoliClient" ToRole="FirmaPaletClient" />
+          <NavigationProperty Name="FirmaÜrünClient" Relationship="Self.FK_ClientFirmaÜrün_FirmaKoli" FromRole="FirmaKoliClient" ToRole="FirmaÜrünClient" />
+          <NavigationProperty Name="FirmaShrinkClient" Relationship="Self.FK_ClientKoliShrink" FromRole="FirmaKoliClient" ToRole="FirmaShrinkClient" />
+        </EntityType>
+        <EntityType Name="FirmaPaletClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isEmriId" Type="Int32" Nullable="false" />
+          <Property Name="Etiket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FirmaKoliClient" Relationship="Self.FK_Client_FirmaKoli_FirmaPalet" FromRole="FirmaPaletClient" ToRole="FirmaKoliClient" />
+          <NavigationProperty Name="FirmaShrinkClient" Relationship="Self.FK_Client_FirmaShrink_FirmaPalet" FromRole="FirmaPaletClient" ToRole="FirmaShrinkClient" />
+          <NavigationProperty Name="FirmaÜrünClient" Relationship="Self.FK_Client_FirmaÜrün_FirmaPalet" FromRole="FirmaPaletClient" ToRole="FirmaÜrünClient" />
+        </EntityType>
+        <EntityType Name="FirmaShrinkClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isemriId" Type="Int32" Nullable="false" />
+          <Property Name="FirmaPaletId" Type="Int32" Nullable="false" />
+          <Property Name="FirmaKoliId" Type="Int32" Nullable="false" />
+          <Property Name="Etiket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FirmaKoliClient" Relationship="Self.FK_ClientKoliShrink" FromRole="FirmaShrinkClient" ToRole="FirmaKoliClient" />
+          <NavigationProperty Name="FirmaPaletClient" Relationship="Self.FK_Client_FirmaShrink_FirmaPalet" FromRole="FirmaShrinkClient" ToRole="FirmaPaletClient" />
+          <NavigationProperty Name="FirmaÜrünClient" Relationship="Self.FK_ClientShrinkÜrün" FromRole="FirmaShrinkClient" ToRole="FirmaÜrünClient" />
+        </EntityType>
+        <EntityType Name="FirmaÜrünClient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isEmriId" Type="Int32" Nullable="false" />
+          <Property Name="FirmaPaletId" Type="Int32" />
+          <Property Name="FirmaKoliId" Type="Int32" />
+          <Property Name="FirmaShrinkId" Type="Int32" />
+          <Property Name="GTN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SKT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN" Type="Int64" Nullable="false" />
+          <Property Name="LOT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShrinkKarekod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KoliKarekod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PaletKarekod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <Property Name="MaxShrink" Type="Int32" Nullable="false" />
+          <Property Name="MaxKoli" Type="Int32" Nullable="false" />
+          <Property Name="MaxPalet" Type="Int32" Nullable="false" />
+          <Property Name="UsersID" Type="Int32" Nullable="false" />
+          <Property Name="MakinaNo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="FirmaKoliClient" Relationship="Self.FK_ClientFirmaÜrün_FirmaKoli" FromRole="FirmaÜrünClient" ToRole="FirmaKoliClient" />
+          <NavigationProperty Name="FirmaPaletClient" Relationship="Self.FK_Client_FirmaÜrün_FirmaPalet" FromRole="FirmaÜrünClient" ToRole="FirmaPaletClient" />
+          <NavigationProperty Name="FirmaShrinkClient" Relationship="Self.FK_ClientShrinkÜrün" FromRole="FirmaÜrünClient" ToRole="FirmaShrinkClient" />
+        </EntityType>
+        <Association Name="FK_Client_FirmaKoli_FirmaPalet">
+          <End Role="FirmaPaletClient" Type="Self.FirmaPaletClient" Multiplicity="1" />
+          <End Role="FirmaKoliClient" Type="Self.FirmaKoliClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaPaletClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaKoliClient">
+              <PropertyRef Name="FirmaPaletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientFirmaÜrün_FirmaKoli">
+          <End Role="FirmaKoliClient" Type="Self.FirmaKoliClient" Multiplicity="0..1" />
+          <End Role="FirmaÜrünClient" Type="Self.FirmaÜrünClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaKoliClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrünClient">
+              <PropertyRef Name="FirmaKoliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientKoliShrink">
+          <End Role="FirmaKoliClient" Type="Self.FirmaKoliClient" Multiplicity="1" />
+          <End Role="FirmaShrinkClient" Type="Self.FirmaShrinkClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaKoliClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaShrinkClient">
+              <PropertyRef Name="FirmaKoliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_FirmaShrink_FirmaPalet">
+          <End Role="FirmaPaletClient" Type="Self.FirmaPaletClient" Multiplicity="1" />
+          <End Role="FirmaShrinkClient" Type="Self.FirmaShrinkClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaPaletClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaShrinkClient">
+              <PropertyRef Name="FirmaPaletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_FirmaÜrün_FirmaPalet">
+          <End Role="FirmaPaletClient" Type="Self.FirmaPaletClient" Multiplicity="0..1" />
+          <End Role="FirmaÜrünClient" Type="Self.FirmaÜrünClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaPaletClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrünClient">
+              <PropertyRef Name="FirmaPaletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientShrinkÜrün">
+          <End Role="FirmaShrinkClient" Type="Self.FirmaShrinkClient" Multiplicity="0..1" />
+          <End Role="FirmaÜrünClient" Type="Self.FirmaÜrünClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaShrinkClient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrünClient">
+              <PropertyRef Name="FirmaShrinkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITS_ClientEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FirmaKoliClient" EntityType="Self.FirmaKoliClient" />
+          <EntitySet Name="FirmaPaletClient" EntityType="Self.FirmaPaletClient" />
+          <EntitySet Name="FirmaShrinkClient" EntityType="Self.FirmaShrinkClient" />
+          <EntitySet Name="FirmaÜrünClient" EntityType="Self.FirmaÜrünClient" />
+          <AssociationSet Name="FK_Client_FirmaKoli_FirmaPalet" Association="Self.FK_Client_FirmaKoli_FirmaPalet">
+            <End Role="FirmaPaletClient" EntitySet="FirmaPaletClient" />
+            <End Role="FirmaKoliClient" EntitySet="FirmaKoliClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientFirmaÜrün_FirmaKoli" Association="Self.FK_ClientFirmaÜrün_FirmaKoli">
+            <End Role="FirmaKoliClient" EntitySet="FirmaKoliClient" />
+            <End Role="FirmaÜrünClient" EntitySet="FirmaÜrünClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientKoliShrink" Association="Self.FK_ClientKoliShrink">
+            <End Role="FirmaKoliClient" EntitySet="FirmaKoliClient" />
+            <End Role="FirmaShrinkClient" EntitySet="FirmaShrinkClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_FirmaShrink_FirmaPalet" Association="Self.FK_Client_FirmaShrink_FirmaPalet">
+            <End Role="FirmaPaletClient" EntitySet="FirmaPaletClient" />
+            <End Role="FirmaShrinkClient" EntitySet="FirmaShrinkClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_FirmaÜrün_FirmaPalet" Association="Self.FK_Client_FirmaÜrün_FirmaPalet">
+            <End Role="FirmaPaletClient" EntitySet="FirmaPaletClient" />
+            <End Role="FirmaÜrünClient" EntitySet="FirmaÜrünClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientShrinkÜrün" Association="Self.FK_ClientShrinkÜrün">
+            <End Role="FirmaShrinkClient" EntitySet="FirmaShrinkClient" />
+            <End Role="FirmaÜrünClient" EntitySet="FirmaÜrünClient" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ITS_ClientModelStoreContainer" CdmEntityContainer="ITS_ClientEntities">
+          <EntitySetMapping Name="FirmaKoliClient">
+            <EntityTypeMapping TypeName="ITS_ClientModel.FirmaKoliClient">
+              <MappingFragment StoreEntitySet="FirmaKoliClient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="isemriId" ColumnName="isemriId" />
+                <ScalarProperty Name="FirmaPaletId" ColumnName="FirmaPaletId" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaPaletClient">
+            <EntityTypeMapping TypeName="ITS_ClientModel.FirmaPaletClient">
+              <MappingFragment StoreEntitySet="FirmaPaletClient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="isEmriId" ColumnName="isEmriId" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaShrinkClient">
+            <EntityTypeMapping TypeName="ITS_ClientModel.FirmaShrinkClient">
+              <MappingFragment StoreEntitySet="FirmaShrinkClient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="isemriId" ColumnName="isemriId" />
+                <ScalarProperty Name="FirmaPaletId" ColumnName="FirmaPaletId" />
+                <ScalarProperty Name="FirmaKoliId" ColumnName="FirmaKoliId" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaÜrünClient">
+            <EntityTypeMapping TypeName="ITS_ClientModel.FirmaÜrünClient">
+              <MappingFragment StoreEntitySet="FirmaÜrünClient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="isEmriId" ColumnName="isEmriId" />
+                <ScalarProperty Name="FirmaPaletId" ColumnName="FirmaPaletId" />
+                <ScalarProperty Name="FirmaKoliId" ColumnName="FirmaKoliId" />
+                <ScalarProperty Name="FirmaShrinkId" ColumnName="FirmaShrinkId" />
+                <ScalarProperty Name="GTN" ColumnName="GTN" />
+                <ScalarProperty Name="SKT" ColumnName="SKT" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="LOT" ColumnName="LOT" />
+                <ScalarProperty Name="ShrinkKarekod" ColumnName="ShrinkKarekod" />
+                <ScalarProperty Name="KoliKarekod" ColumnName="KoliKarekod" />
+                <ScalarProperty Name="PaletKarekod" ColumnName="PaletKarekod" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="MaxShrink" ColumnName="MaxShrink" />
+                <ScalarProperty Name="MaxKoli" ColumnName="MaxKoli" />
+                <ScalarProperty Name="MaxPalet" ColumnName="MaxPalet" />
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

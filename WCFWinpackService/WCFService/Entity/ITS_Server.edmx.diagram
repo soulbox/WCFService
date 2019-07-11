@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="371171465aeb40249c90302ac6f50657" Name="Diagram1">
+        <EntityTypeShape EntityType="ITS_ServerModel.BildirmTipi" Width="1.5" PointX="12.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.EczaDeposu" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.EtiketCihazı" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Etiketler" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Firma" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.FirmaKoli" Width="1.5" PointX="7.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.FirmaPalet" Width="1.5" PointX="7.5" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.FirmaShrink" Width="1.5" PointX="7.5" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.FirmaÜrün" Width="1.5" PointX="10.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.inkjet" Width="1.5" PointX="3" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.İşEmri" Width="1.5" PointX="5.25" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Kamera" Width="1.5" PointX="3" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Makinalar" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.PLC" Width="1.5" PointX="3" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Satış" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Transfer" Width="1.5" PointX="5.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.UserMakina" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Users" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.Ürünler" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITS_ServerModel.KullanıcılarıAdSoyadaGöreListele" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ITS_ServerModel.FK_BildirmTipi_FirmaÜrün" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_Satış_EczaDeposu" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_Satış_EczaDeposu1" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_Etiketler_EtiketCihazı" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_EtiketCihazı" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_Etiketler" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_Satış_Firma" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_Ürünler_Firma1" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaKoli_İşEmri" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaKoli_Satış" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaPalet_İşEmri" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaShrink_İşEmri" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaÜrün_İşEmri" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaÜrün_Satış" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_FirmaÜrün_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_inkjet" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_Kamera" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_PLC" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_İşEmri_Ürünler" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_UserMakina_Makinalar" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_Transfer_Satış" ManuallyRouted="false" />
+        <AssociationConnector Association="ITS_ServerModel.FK_UserMakina_Users1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ITS_ServerModel.işemriListele" Width="1.5" PointX="0.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C380E348-8D8B-4290-84DF-99D6B9BE2311}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DTO</RootNamespace>
+    <AssemblyName>DTO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataCollect\DB_Machine.cs" />
+    <Compile Include="DataCollect\LogDTO.cs" />
+    <Compile Include="DataCollect\UserDTO.cs" />
+    <Compile Include="DataCollect\UserPermissionDTO.cs" />
+    <Compile Include="ITSDTO\BildirimTipiDTO.cs" />
+    <Compile Include="ITSDTO\EczaDeposuDTO.cs" />
+    <Compile Include="ITSDTO\EtiketCihazıDTO.cs" />
+    <Compile Include="ITSDTO\EtiketlerDTO.cs" />
+    <Compile Include="ITSDTO\FirmaDTO.cs" />
+    <Compile Include="ITSDTO\FirmaKoliDTO.cs" />
+    <Compile Include="ITSDTO\FirmaPaletDTO.cs" />
+    <Compile Include="ITSDTO\FirmaShrinkDTO.cs" />
+    <Compile Include="ITSDTO\FirmaÜrünDTO.cs" />
+    <Compile Include="ITSDTO\inkjetDTO.cs" />
+    <Compile Include="ITSDTO\işemriListeleDTO.cs" />
+    <Compile Include="ITSDTO\KameraDTO.cs" />
+    <Compile Include="ITSDTO\MakinalarDTO.cs" />
+    <Compile Include="ITSDTO\PLCDTO.cs" />
+    <Compile Include="ITSDTO\SatışDTO.cs" />
+    <Compile Include="ITSDTO\TransferDTO.cs" />
+    <Compile Include="ITSDTO\UserMakinaDTO.cs" />
+    <Compile Include="ITSDTO\UsersDTO.cs" />
+    <Compile Include="ITSDTO\ÜrünlerDTO.cs" />
+    <Compile Include="ITSDTO\İşEmriDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

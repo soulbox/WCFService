@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DataCollectorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DataLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="HeatAddress" Type="int" Nullable="false" />
+          <Property Name="HumidityAddress" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataPointSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeviceId" Type="int" Nullable="false" />
+          <Property Name="DataLevelId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="int" Nullable="false" />
+          <Property Name="Unit" Type="int" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CurrentValue" Type="int" Nullable="false" />
+          <Property Name="MinValue" Type="int" Nullable="false" />
+          <Property Name="MaxValue" Type="int" Nullable="false" />
+          <Property Name="SetValue" Type="int" Nullable="false" />
+          <Property Name="CritValue" Type="int" Nullable="false" />
+          <Property Name="DangerValue" Type="int" Nullable="false" />
+          <Property Name="OffsetValue" Type="int" Nullable="false" />
+          <Property Name="DSet" Type="int" Nullable="false" />
+          <Property Name="DCritPlus" Type="int" Nullable="false" />
+          <Property Name="DCritNegative" Type="int" Nullable="false" />
+          <Property Name="DDangerPlus" Type="int" Nullable="false" />
+          <Property Name="DDangerNegative" Type="int" Nullable="false" />
+          <Property Name="DOffset" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="DatapointId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeviceSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Host" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="Interval" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Durum" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rapor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bölge" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Isı" Type="int" Nullable="false" />
+          <Property Name="Nem" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="username" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="eposta" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar(max)" />
+          <Property Name="tel" Type="nvarchar" MaxLength="20" />
+          <Property Name="MainAdmin" Type="bit" Nullable="false" />
+          <Property Name="BasTarihi" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Raporlama" Type="bit" Nullable="false" />
+          <Property Name="Asansör" Type="bit" Nullable="false" />
+          <Property Name="Alarm" Type="bit" Nullable="false" />
+          <Property Name="Ayarlar" Type="bit" Nullable="false" />
+          <Property Name="Aydınlatma" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DataLevel_DeviceSet">
+          <End Role="DeviceSet" Type="Self.DeviceSet" Multiplicity="1" />
+          <End Role="DataLevel" Type="Self.DataLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataLevel">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataPointSet_DataLevel">
+          <End Role="DataLevel" Type="Self.DataLevel" Multiplicity="1" />
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataPointSet">
+              <PropertyRef Name="DataLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataPointSet_DeviceSet">
+          <End Role="DeviceSet" Type="Self.DeviceSet" Multiplicity="1" />
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataPointSet">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValue_DataPointSet">
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="1" />
+          <End Role="DataValue" Type="Self.DataValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataPointSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataValue">
+              <PropertyRef Name="DatapointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataCollectorModelStoreContainer">
+          <EntitySet Name="DataLevel" EntityType="Self.DataLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataPointSet" EntityType="Self.DataPointSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataValue" EntityType="Self.DataValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeviceSet" EntityType="Self.DeviceSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rapor" EntityType="Self.Rapor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPermission" EntityType="Self.UserPermission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DataLevel_DeviceSet" Association="Self.FK_DataLevel_DeviceSet">
+            <End Role="DeviceSet" EntitySet="DeviceSet" />
+            <End Role="DataLevel" EntitySet="DataLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataPointSet_DataLevel" Association="Self.FK_DataPointSet_DataLevel">
+            <End Role="DataLevel" EntitySet="DataLevel" />
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataPointSet_DeviceSet" Association="Self.FK_DataPointSet_DeviceSet">
+            <End Role="DeviceSet" EntitySet="DeviceSet" />
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValue_DataPointSet" Association="Self.FK_DataValue_DataPointSet">
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+            <End Role="DataValue" EntitySet="DataValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_User" Association="Self.FK_Log_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_User1" Association="Self.FK_UserPermission_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataCollectorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DataLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="HeatAddress" Type="Int32" Nullable="false" />
+          <Property Name="HumidityAddress" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DeviceSet" Relationship="Self.FK_DataLevel_DeviceSet" FromRole="DataLevel" ToRole="DeviceSet" />
+          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_DataPointSet_DataLevel" FromRole="DataLevel" ToRole="DataPointSet" />
+        </EntityType>
+        <EntityType Name="DataPointSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeviceId" Type="Int32" Nullable="false" />
+          <Property Name="DataLevelId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="Int32" Nullable="false" />
+          <Property Name="Unit" Type="Int32" Nullable="false" />
+          <Property Name="Label" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrentValue" Type="Int32" Nullable="false" />
+          <Property Name="MinValue" Type="Int32" Nullable="false" />
+          <Property Name="MaxValue" Type="Int32" Nullable="false" />
+          <Property Name="SetValue" Type="Int32" Nullable="false" />
+          <Property Name="CritValue" Type="Int32" Nullable="false" />
+          <Property Name="DangerValue" Type="Int32" Nullable="false" />
+          <Property Name="OffsetValue" Type="Int32" Nullable="false" />
+          <Property Name="DSet" Type="Int32" Nullable="false" />
+          <Property Name="DCritPlus" Type="Int32" Nullable="false" />
+          <Property Name="DCritNegative" Type="Int32" Nullable="false" />
+          <Property Name="DDangerPlus" Type="Int32" Nullable="false" />
+          <Property Name="DDangerNegative" Type="Int32" Nullable="false" />
+          <Property Name="DOffset" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataLevel" Relationship="Self.FK_DataPointSet_DataLevel" FromRole="DataPointSet" ToRole="DataLevel" />
+          <NavigationProperty Name="DeviceSet" Relationship="Self.FK_DataPointSet_DeviceSet" FromRole="DataPointSet" ToRole="DeviceSet" />
+          <NavigationProperty Name="DataValue" Relationship="Self.FK_DataValue_DataPointSet" FromRole="DataPointSet" ToRole="DataValue" />
+        </EntityType>
+        <EntityType Name="DataValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="DatapointId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_DataValue_DataPointSet" FromRole="DataValue" ToRole="DataPointSet" />
+        </EntityType>
+        <EntityType Name="DeviceSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Host" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="Interval" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="DataLevel" Relationship="Self.FK_DataLevel_DeviceSet" FromRole="DeviceSet" ToRole="DataLevel" />
+          <NavigationProperty Name="DataPointSet" Relationship="Self.FK_DataPointSet_DeviceSet" FromRole="DeviceSet" ToRole="DataPointSet" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Durum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Log_User" FromRole="Log" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Rapor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bölge" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Isı" Type="Int32" Nullable="false" />
+          <Property Name="Nem" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="surname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MainAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="BasTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Log" Relationship="Self.FK_Log_User" FromRole="User" ToRole="Log" />
+          <NavigationProperty Name="UserPermission" Relationship="Self.FK_UserPermission_User1" FromRole="User" ToRole="UserPermission" />
+        </EntityType>
+        <EntityType Name="UserPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Raporlama" Type="Boolean" Nullable="false" />
+          <Property Name="Asansör" Type="Boolean" Nullable="false" />
+          <Property Name="Alarm" Type="Boolean" Nullable="false" />
+          <Property Name="Ayarlar" Type="Boolean" Nullable="false" />
+          <Property Name="Aydınlatma" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserPermission_User1" FromRole="UserPermission" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_DataLevel_DeviceSet">
+          <End Role="DeviceSet" Type="Self.DeviceSet" Multiplicity="1" />
+          <End Role="DataLevel" Type="Self.DataLevel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataLevel">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataPointSet_DataLevel">
+          <End Role="DataLevel" Type="Self.DataLevel" Multiplicity="1" />
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataLevel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataPointSet">
+              <PropertyRef Name="DataLevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataPointSet_DeviceSet">
+          <End Role="DeviceSet" Type="Self.DeviceSet" Multiplicity="1" />
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeviceSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataPointSet">
+              <PropertyRef Name="DeviceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataValue_DataPointSet">
+          <End Role="DataPointSet" Type="Self.DataPointSet" Multiplicity="1" />
+          <End Role="DataValue" Type="Self.DataValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataPointSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataValue">
+              <PropertyRef Name="DatapointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPermission_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserPermission" Type="Self.UserPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPermission">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataCollectorEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DataLevel" EntityType="Self.DataLevel" />
+          <EntitySet Name="DataPointSet" EntityType="Self.DataPointSet" />
+          <EntitySet Name="DataValue" EntityType="Self.DataValue" />
+          <EntitySet Name="DeviceSet" EntityType="Self.DeviceSet" />
+          <EntitySet Name="Log" EntityType="Self.Log" />
+          <EntitySet Name="Rapor" EntityType="Self.Rapor" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserPermission" EntityType="Self.UserPermission" />
+          <AssociationSet Name="FK_DataLevel_DeviceSet" Association="Self.FK_DataLevel_DeviceSet">
+            <End Role="DeviceSet" EntitySet="DeviceSet" />
+            <End Role="DataLevel" EntitySet="DataLevel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataPointSet_DataLevel" Association="Self.FK_DataPointSet_DataLevel">
+            <End Role="DataLevel" EntitySet="DataLevel" />
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataPointSet_DeviceSet" Association="Self.FK_DataPointSet_DeviceSet">
+            <End Role="DeviceSet" EntitySet="DeviceSet" />
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataValue_DataPointSet" Association="Self.FK_DataValue_DataPointSet">
+            <End Role="DataPointSet" EntitySet="DataPointSet" />
+            <End Role="DataValue" EntitySet="DataValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_User" Association="Self.FK_Log_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPermission_User1" Association="Self.FK_UserPermission_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPermission" EntitySet="UserPermission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataCollectorModelStoreContainer" CdmEntityContainer="DataCollectorEntities">
+          <EntitySetMapping Name="DataLevel">
+            <EntityTypeMapping TypeName="DataCollectorModel.DataLevel">
+              <MappingFragment StoreEntitySet="DataLevel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="HeatAddress" ColumnName="HeatAddress" />
+                <ScalarProperty Name="HumidityAddress" ColumnName="HumidityAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataPointSet">
+            <EntityTypeMapping TypeName="DataCollectorModel.DataPointSet">
+              <MappingFragment StoreEntitySet="DataPointSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="DataLevelId" ColumnName="DataLevelId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="CurrentValue" ColumnName="CurrentValue" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="SetValue" ColumnName="SetValue" />
+                <ScalarProperty Name="CritValue" ColumnName="CritValue" />
+                <ScalarProperty Name="DangerValue" ColumnName="DangerValue" />
+                <ScalarProperty Name="OffsetValue" ColumnName="OffsetValue" />
+                <ScalarProperty Name="DSet" ColumnName="DSet" />
+                <ScalarProperty Name="DCritPlus" ColumnName="DCritPlus" />
+                <ScalarProperty Name="DCritNegative" ColumnName="DCritNegative" />
+                <ScalarProperty Name="DDangerPlus" ColumnName="DDangerPlus" />
+                <ScalarProperty Name="DDangerNegative" ColumnName="DDangerNegative" />
+                <ScalarProperty Name="DOffset" ColumnName="DOffset" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataValue">
+            <EntityTypeMapping TypeName="DataCollectorModel.DataValue">
+              <MappingFragment StoreEntitySet="DataValue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="DatapointId" ColumnName="DatapointId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeviceSet">
+            <EntityTypeMapping TypeName="DataCollectorModel.DeviceSet">
+              <MappingFragment StoreEntitySet="DeviceSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Host" ColumnName="Host" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="Interval" ColumnName="Interval" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="DataCollectorModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rapor">
+            <EntityTypeMapping TypeName="DataCollectorModel.Rapor">
+              <MappingFragment StoreEntitySet="Rapor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Bölge" ColumnName="Bölge" />
+                <ScalarProperty Name="Isı" ColumnName="Isı" />
+                <ScalarProperty Name="Nem" ColumnName="Nem" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DataCollectorModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DataCollectorModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="eposta" ColumnName="eposta" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="MainAdmin" ColumnName="MainAdmin" />
+                <ScalarProperty Name="BasTarihi" ColumnName="BasTarihi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPermission">
+            <EntityTypeMapping TypeName="DataCollectorModel.UserPermission">
+              <MappingFragment StoreEntitySet="UserPermission">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Raporlama" ColumnName="Raporlama" />
+                <ScalarProperty Name="Asansör" ColumnName="Asansör" />
+                <ScalarProperty Name="Alarm" ColumnName="Alarm" />
+                <ScalarProperty Name="Ayarlar" ColumnName="Ayarlar" />
+                <ScalarProperty Name="Aydınlatma" ColumnName="Aydınlatma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

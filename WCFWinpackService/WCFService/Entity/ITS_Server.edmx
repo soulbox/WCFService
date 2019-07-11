@@ -1,0 +1,2660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ITS_ServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BildirmTipi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipi" Type="varchar" MaxLength="40" />
+          <Property Name="Tarih" Type="datetime" />
+          <Property Name="ÜrünID" Type="decimal" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EczaDeposu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirmaAdı" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="GLN" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="İl" Type="varchar" MaxLength="50" />
+          <Property Name="İlçe" Type="varchar" MaxLength="50" />
+          <Property Name="Durum" Type="bit" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Adress" Type="varchar" MaxLength="250" />
+          <Property Name="MerkezSube" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="EtiketCihazı">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="port" Type="int" Nullable="false" />
+          <Property Name="MakinaNo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Etiketler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Açıklama" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EtiketShirnk" Type="varchar(max)" Nullable="false" />
+          <Property Name="EtiketKoli" Type="varchar(max)" Nullable="false" />
+          <Property Name="EtiketPalet" Type="varchar(max)" Nullable="false" />
+          <Property Name="EtiketCihazId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firma Adı" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Firma GLN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ITSID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ITSPW" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FirmaKoli">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KoliID" Type="int" Nullable="false" />
+          <Property Name="isemriId" Type="int" Nullable="false" />
+          <Property Name="PaletID" Type="int" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="100" />
+          <Property Name="MakinaNo" Type="tinyint" />
+          <Property Name="SatışID" Type="int" />
+        </EntityType>
+        <EntityType Name="FirmaPalet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaletID" Type="int" Nullable="false" />
+          <Property Name="isEmriId" Type="int" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="100" />
+          <Property Name="MakinaNo" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="FirmaShrink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShrinkID" Type="int" Nullable="false" />
+          <Property Name="isemriId" Type="int" Nullable="false" />
+          <Property Name="PaletID" Type="int" Nullable="false" />
+          <Property Name="KoliID" Type="int" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="100" />
+          <Property Name="MakinaNo" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="FirmaÜrün">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="decimal" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isEmriId" Type="int" Nullable="false" />
+          <Property Name="PaletID" Type="int" Nullable="false" />
+          <Property Name="KoliID" Type="int" Nullable="false" />
+          <Property Name="ShrinkID" Type="int" Nullable="false" />
+          <Property Name="GTN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SKT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SN" Type="bigint" Nullable="false" />
+          <Property Name="LOT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ShrinkKarekod" Type="varchar" MaxLength="20" />
+          <Property Name="KoliKarekod" Type="varchar" MaxLength="20" />
+          <Property Name="PaletKarekod" Type="varchar" MaxLength="20" />
+          <Property Name="tarih" Type="datetime" />
+          <Property Name="UsersID" Type="int" Nullable="false" />
+          <Property Name="BildirimID" Type="decimal" Precision="38" Scale="0" />
+          <Property Name="HataKodu" Type="int" />
+          <Property Name="HataMesajı" Type="varchar" MaxLength="100" />
+          <Property Name="SatışID" Type="int" />
+          <Property Name="MakinaNo" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="inkjet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="COM" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MakinaNo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="İşEmri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GTN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LOT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SKT" Type="date" Nullable="false" />
+          <Property Name="Durum" Type="bit" Nullable="false" />
+          <Property Name="firmaid" Type="int" Nullable="false" />
+          <Property Name="kameraid" Type="int" Nullable="false" />
+          <Property Name="inkjetid" Type="int" Nullable="false" />
+          <Property Name="EtiketCihazıId" Type="int" Nullable="false" />
+          <Property Name="EtiketId" Type="int" />
+          <Property Name="PLCId" Type="int" Nullable="false" />
+          <Property Name="FirmaUrunlerId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="isSended" Type="bit" Nullable="false" />
+          <Property Name="MaxSn" Type="varchar" MaxLength="20" />
+          <Property Name="ShrinkEtiketi" Type="bit" Nullable="false" />
+          <Property Name="KoliEtiketi" Type="bit" Nullable="false" />
+          <Property Name="PaletEtiketi" Type="bit" Nullable="false" />
+          <Property Name="MakinaNo" Type="tinyint" Nullable="false" />
+          <Property Name="ÜretimMiktarı" Type="int" Nullable="false" />
+          <Property Name="ShrinkMiktarı" Type="int" Nullable="false" />
+          <Property Name="KoliMiktarı" Type="int" Nullable="false" />
+          <Property Name="PaletMiktarı" Type="int" Nullable="false" />
+          <Property Name="MaxShrinkID" Type="int" Nullable="false" />
+          <Property Name="MaxKoliID" Type="int" Nullable="false" />
+          <Property Name="MaxPaletID" Type="int" Nullable="false" />
+          <Property Name="MinShrinkID" Type="int" Nullable="false" />
+          <Property Name="MinKoliID" Type="int" Nullable="false" />
+          <Property Name="MinPaletID" Type="int" Nullable="false" />
+          <Property Name="ihracat" Type="bit" Nullable="false" />
+          <Property Name="MFG" Type="date" />
+        </EntityType>
+        <EntityType Name="Kamera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="port" Type="int" Nullable="false" />
+          <Property Name="MakinaNo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Makinalar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MakinaNo" Type="tinyint" Nullable="false" />
+          <Property Name="HWID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Açıklama" Type="varchar" MaxLength="100" />
+          <Property Name="MakinaIP" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PLC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="20" />
+          <Property Name="port" Type="int" />
+          <Property Name="MakinaNo" Type="tinyint" Nullable="false" />
+          <Property Name="Com" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Satış">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="MerkezDepoID" Type="int" Nullable="false" />
+          <Property Name="Durumu" Type="bit" Nullable="false" />
+          <Property Name="ÜretimFirmaID" Type="int" Nullable="false" />
+          <Property Name="SiparişNo" Type="varchar" MaxLength="10" />
+          <Property Name="AlıcıŞubeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transfer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransferID" Type="bigint" Nullable="false" />
+          <Property Name="SatışID" Type="int" />
+        </EntityType>
+        <EntityType Name="UserMakina">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MakinaID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MakinaID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="60" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="admin" Type="bit" Nullable="false" />
+          <Property Name="adı" Type="varchar" MaxLength="20" />
+          <Property Name="soyadı" Type="varchar" MaxLength="20" />
+          <Property Name="eposta" Type="varchar" MaxLength="50" />
+          <Property Name="tel" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Ürünler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ürün Adı" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GTIN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="Barcodesize" Type="int" Nullable="false" />
+          <Property Name="SKT_X" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="SKT_Y" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="LOT_X" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LOT_Y" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GTIN_X" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GTIN_Y" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SN_X" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SN_Y" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gecikme" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SKT_FONT" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="SN_FONT" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="LOT_Font" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="GTIN_FONT" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="KolidekiShrik" Type="int" Nullable="false" />
+          <Property Name="ShrinkdekiÜrün" Type="int" Nullable="false" />
+          <Property Name="PalettekiKoli" Type="int" Nullable="false" />
+          <Property Name="Rafömrü" Type="date" Nullable="false" />
+          <Property Name="FİrmaId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITS_Server.dbo.işemriListele' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="işemriListele">
+          <Key>
+            <PropertyRef Name="İşEmriID" />
+            <PropertyRef Name="Ürün Adı" />
+            <PropertyRef Name="SN" />
+            <PropertyRef Name="ÜretimMiktarı" />
+            <PropertyRef Name="LOT" />
+            <PropertyRef Name="SKT" />
+            <PropertyRef Name="Tarih" />
+            <PropertyRef Name="Durum" />
+            <PropertyRef Name="ihracat" />
+            <PropertyRef Name="MakinaIP" />
+            <PropertyRef Name="Etiket" />
+            <PropertyRef Name="EtiketIP" />
+            <PropertyRef Name="Inkjet" />
+            <PropertyRef Name="InkjetPort" />
+            <PropertyRef Name="Kamera" />
+            <PropertyRef Name="KameraIP" />
+          </Key>
+          <Property Name="İşEmriID" Type="int" Nullable="false" />
+          <Property Name="Makina" Type="varchar" MaxLength="100" />
+          <Property Name="Ürün Adı" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaxSn" Type="varchar" MaxLength="20" />
+          <Property Name="ÜretimMiktarı" Type="int" Nullable="false" />
+          <Property Name="LOT" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SKT" Type="date" Nullable="false" />
+          <Property Name="Tarih" Type="date" Nullable="false" />
+          <Property Name="Durum" Type="bit" Nullable="false" />
+          <Property Name="ihracat" Type="bit" Nullable="false" />
+          <Property Name="MFG" Type="date" />
+          <Property Name="MakinaIP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Etiket" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EtiketIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Inkjet" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="InkjetPort" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kamera" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="KameraIP" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ITS_Server.dbo.KullanıcılarıAdSoyadaGöreListele' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="KullanıcılarıAdSoyadaGöreListele">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adı Soyadı" Type="varchar" MaxLength="41" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__EtiketCih__Makin__6B24EA82' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__EtiketCih__Makin__6B24EA82" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__inkjet__MakinaNo__6EF57B66' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__inkjet__MakinaNo__6EF57B66" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Kamera__MakinaNo__6D0D32F4' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Kamera__MakinaNo__6D0D32F4" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__PLC__MakinaNo__70DDC3D8' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__PLC__MakinaNo__70DDC3D8" />-->
+        <Association Name="FK_BildirmTipi_FirmaÜrün">
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="1" />
+          <End Role="BildirmTipi" Type="Self.BildirmTipi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaÜrün">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BildirmTipi">
+              <PropertyRef Name="ÜrünID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etiketler_EtiketCihazı">
+          <End Role="EtiketCihazı" Type="Self.EtiketCihazı" Multiplicity="1" />
+          <End Role="Etiketler" Type="Self.Etiketler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EtiketCihazı">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Etiketler">
+              <PropertyRef Name="EtiketCihazId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaKoli_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaKoli" Type="Self.FirmaKoli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaKoli">
+              <PropertyRef Name="isemriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaKoli_Satış">
+          <End Role="Satış" Type="Self.Satış" Multiplicity="0..1" />
+          <End Role="FirmaKoli" Type="Self.FirmaKoli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satış">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaKoli">
+              <PropertyRef Name="SatışID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaPalet_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaPalet" Type="Self.FirmaPalet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaPalet">
+              <PropertyRef Name="isEmriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaShrink_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaShrink" Type="Self.FirmaShrink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaShrink">
+              <PropertyRef Name="isemriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaÜrün_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrün">
+              <PropertyRef Name="isEmriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaÜrün_Satış">
+          <End Role="Satış" Type="Self.Satış" Multiplicity="0..1" />
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satış">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrün">
+              <PropertyRef Name="SatışID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaÜrün_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrün">
+              <PropertyRef Name="UsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_EtiketCihazı">
+          <End Role="EtiketCihazı" Type="Self.EtiketCihazı" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EtiketCihazı">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="EtiketCihazıId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Etiketler">
+          <End Role="Etiketler" Type="Self.Etiketler" Multiplicity="0..1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etiketler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="EtiketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Firma">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="firmaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_inkjet">
+          <End Role="inkjet" Type="Self.inkjet" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inkjet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="inkjetid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Kamera">
+          <End Role="Kamera" Type="Self.Kamera" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kamera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="kameraid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_İşEmri_Makinalar' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_İşEmri_Makinalar" />-->
+        <Association Name="FK_İşEmri_PLC">
+          <End Role="PLC" Type="Self.PLC" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="PLCId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Ürünler">
+          <End Role="Ürünler" Type="Self.Ürünler" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ürünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="FirmaUrunlerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satış_EczaDeposu">
+          <End Role="EczaDeposu" Type="Self.EczaDeposu" Multiplicity="1" />
+          <End Role="Satış" Type="Self.Satış" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EczaDeposu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satış">
+              <PropertyRef Name="MerkezDepoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satış_EczaDeposu1">
+          <End Role="EczaDeposu" Type="Self.EczaDeposu" Multiplicity="1" />
+          <End Role="Satış" Type="Self.Satış" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EczaDeposu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satış">
+              <PropertyRef Name="AlıcıŞubeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satış_Firma">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Satış" Type="Self.Satış" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satış">
+              <PropertyRef Name="ÜretimFirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transfer_Satış">
+          <End Role="Satış" Type="Self.Satış" Multiplicity="0..1" />
+          <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satış">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transfer">
+              <PropertyRef Name="SatışID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMakina_Makinalar">
+          <End Role="Makinalar" Type="Self.Makinalar" Multiplicity="1" />
+          <End Role="UserMakina" Type="Self.UserMakina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makinalar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMakina">
+              <PropertyRef Name="MakinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMakina_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserMakina" Type="Self.UserMakina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMakina">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ürünler_Firma1">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Ürünler" Type="Self.Ürünler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ürünler">
+              <PropertyRef Name="FİrmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ClienttenEklenenFirmaKoli" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="işemriID" Type="int" Mode="In" />
+          <Parameter Name="PaletID" Type="int" Mode="In" />
+          <Parameter Name="KoliID" Type="int" Mode="In" />
+          <Parameter Name="Etiket" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaNo" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="ClienttenEklenenFirmaPalet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="işemriID" Type="int" Mode="In" />
+          <Parameter Name="PaletID" Type="int" Mode="In" />
+          <Parameter Name="Etiket" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaNo" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="ClienttenEklenenFirmaShrink" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="işemriID" Type="int" Mode="In" />
+          <Parameter Name="PaletID" Type="int" Mode="In" />
+          <Parameter Name="KoliID" Type="int" Mode="In" />
+          <Parameter Name="ShrinkID" Type="int" Mode="In" />
+          <Parameter Name="Etiket" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaNo" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="ClienttenEklenenFirmaürün" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="işemriID" Type="int" Mode="In" />
+          <Parameter Name="PaletID" Type="int" Mode="In" />
+          <Parameter Name="KoliID" Type="int" Mode="In" />
+          <Parameter Name="ShrinkID" Type="int" Mode="In" />
+          <Parameter Name="GTN" Type="varchar" Mode="In" />
+          <Parameter Name="SKT" Type="varchar" Mode="In" />
+          <Parameter Name="SN" Type="varchar" Mode="In" />
+          <Parameter Name="LOT" Type="varchar" Mode="In" />
+          <Parameter Name="ShrinkKarekod" Type="varchar" Mode="In" />
+          <Parameter Name="KoliKarekod" Type="varchar" Mode="In" />
+          <Parameter Name="PaletKareKod" Type="varchar" Mode="In" />
+          <Parameter Name="Tarih" Type="datetime" Mode="In" />
+          <Parameter Name="UserID" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="Deneme" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="prmIsEmri" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EtiketCihazıEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EtiketCihazıGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EtiketCihazıSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EtiketEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Açıklama" Type="nvarchar" Mode="In" />
+          <Parameter Name="EtiketShrink" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EtiketKoli" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EtiketPalet" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EtiketCihazıID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EtiketGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Açıklama" Type="nvarchar" Mode="In" />
+          <Parameter Name="EtiketShrink" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EtiketKoli" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EtiketPalet" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EtiketSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FirmaEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirmaAdı" Type="varchar" Mode="In" />
+          <Parameter Name="FirmaGLN" Type="varchar" Mode="In" />
+          <Parameter Name="ITSID" Type="varchar" Mode="In" />
+          <Parameter Name="ITSPW" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="FirmaGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirmaAdı" Type="varchar" Mode="In" />
+          <Parameter Name="FirmaGLN" Type="varchar" Mode="In" />
+          <Parameter Name="ITSID" Type="varchar" Mode="In" />
+          <Parameter Name="ITSPW" Type="varchar" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="FirmaSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="inkjetEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="COM" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="inkjetGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="COM" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="inkjetSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertingProc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="İşEmriEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GTN" Type="varchar" Mode="In" />
+          <Parameter Name="SN" Type="varchar" Mode="In" />
+          <Parameter Name="LOT" Type="varchar" Mode="In" />
+          <Parameter Name="SKT" Type="date" Mode="In" />
+          <Parameter Name="FirmaID" Type="int" Mode="In" />
+          <Parameter Name="KameraID" Type="int" Mode="In" />
+          <Parameter Name="inkjetID" Type="int" Mode="In" />
+          <Parameter Name="EtiketCihazı" Type="int" Mode="In" />
+          <Parameter Name="EtiketId" Type="int" Mode="In" />
+          <Parameter Name="PLCID" Type="int" Mode="In" />
+          <Parameter Name="FirmanınÜrünüID" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ShrinkEtiketi" Type="bit" Mode="In" />
+          <Parameter Name="KoliEtiketi" Type="bit" Mode="In" />
+          <Parameter Name="PaletEtiketi" Type="bit" Mode="In" />
+          <Parameter Name="ÜretimMiktarı" Type="int" Mode="In" />
+          <Parameter Name="işemriTarihi" Type="date" Mode="In" />
+          <Parameter Name="ihracat" Type="bit" Mode="In" />
+          <Parameter Name="MFG" Type="date" Mode="In" />
+        </Function>
+        <Function Name="İşEmriEkleWithID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="işemriId" Type="int" Mode="In" />
+          <Parameter Name="GTN" Type="varchar" Mode="In" />
+          <Parameter Name="SN" Type="bigint" Mode="In" />
+          <Parameter Name="LOT" Type="varchar" Mode="In" />
+          <Parameter Name="SKT" Type="date" Mode="In" />
+          <Parameter Name="FirmaID" Type="int" Mode="In" />
+          <Parameter Name="KameraID" Type="int" Mode="In" />
+          <Parameter Name="inkjetID" Type="int" Mode="In" />
+          <Parameter Name="EtiketCihazıId" Type="int" Mode="In" />
+          <Parameter Name="EtiketId" Type="int" Mode="In" />
+          <Parameter Name="PLCID" Type="int" Mode="In" />
+          <Parameter Name="FirmanınÜrünüID" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ÜretimMiktarı" Type="int" Mode="In" />
+          <Parameter Name="işemriTarihi" Type="date" Mode="In" />
+          <Parameter Name="Maxsn" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="İşEmriGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GTN" Type="varchar" Mode="In" />
+          <Parameter Name="SN" Type="varchar" Mode="In" />
+          <Parameter Name="LOT" Type="varchar" Mode="In" />
+          <Parameter Name="SKT" Type="date" Mode="In" />
+          <Parameter Name="FirmaID" Type="int" Mode="In" />
+          <Parameter Name="KameraID" Type="int" Mode="In" />
+          <Parameter Name="inkjetID" Type="int" Mode="In" />
+          <Parameter Name="EtiketCihazı" Type="int" Mode="In" />
+          <Parameter Name="EtiketId" Type="int" Mode="In" />
+          <Parameter Name="PLCID" Type="int" Mode="In" />
+          <Parameter Name="FirmanınÜrünüID" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ShrinkEtiketi" Type="bit" Mode="In" />
+          <Parameter Name="KoliEtiketi" Type="bit" Mode="In" />
+          <Parameter Name="PaletEtiketi" Type="bit" Mode="In" />
+          <Parameter Name="ihracat" Type="bit" Mode="In" />
+          <Parameter Name="ÜretimMiktarı" Type="int" Mode="In" />
+          <Parameter Name="MFG" Type="date" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="İşEmriSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KameraEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KameraGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KameraSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KarmaKoliOluştur" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isemriID" Type="int" Mode="In" />
+          <Parameter Name="firmaGLN" Type="varchar" Mode="In" />
+          <Parameter Name="satışID" Type="int" Mode="In" />
+          <Parameter Name="etiket" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="KullanıcıEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KullanıcıAdı" Type="varchar" Mode="In" />
+          <Parameter Name="KullanıcıŞifresi" Type="varchar" Mode="In" />
+          <Parameter Name="görevi" Type="varchar" Mode="In" />
+          <Parameter Name="Yönetici" Type="bit" Mode="In" />
+          <Parameter Name="Adı" Type="varchar" Mode="In" />
+          <Parameter Name="Soyadı" Type="varchar" Mode="In" />
+          <Parameter Name="eposta" Type="varchar" Mode="In" />
+          <Parameter Name="tel" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="KullanıcıGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="KullanıcıAdı" Type="varchar" Mode="In" />
+          <Parameter Name="KullanıcıŞifresi" Type="varchar" Mode="In" />
+          <Parameter Name="görevi" Type="varchar" Mode="In" />
+          <Parameter Name="Yönetici" Type="bit" Mode="In" />
+          <Parameter Name="Adı" Type="varchar" Mode="In" />
+          <Parameter Name="Soyadı" Type="varchar" Mode="In" />
+          <Parameter Name="eposta" Type="varchar" Mode="In" />
+          <Parameter Name="tel" Type="varchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KullanıcıMakinaEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MakinaID" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KullanıcıMakinaGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MakinaID" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KullanıcıMakinaSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="KullanıcıSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MakinaEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MakinaNo" Type="tinyint" Mode="In" />
+          <Parameter Name="HWID" Type="varchar" Mode="In" />
+          <Parameter Name="Açıklama" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaIP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="MakinaGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MakinaNo" Type="tinyint" Mode="In" />
+          <Parameter Name="HWID" Type="varchar" Mode="In" />
+          <Parameter Name="Açıklama" Type="varchar" Mode="In" />
+          <Parameter Name="MakinaIP" Type="varchar" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MakinaSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PLCEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PLCGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="Port" Type="int" Mode="In" />
+          <Parameter Name="MakinaNo" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PLCSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_KontrolBasamagı" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Deger" Type="varchar" Mode="In" />
+          <Parameter Name="çıktı" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Test" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="denem" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ÜrünlerEkle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ÜrünAdı" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN" Type="varchar" Mode="In" />
+          <Parameter Name="BarcodeSize" Type="int" Mode="In" />
+          <Parameter Name="SKT_X" Type="varchar" Mode="In" />
+          <Parameter Name="SKT_Y" Type="varchar" Mode="In" />
+          <Parameter Name="LOT_X" Type="varchar" Mode="In" />
+          <Parameter Name="LOT_Y" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN_X" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN_Y" Type="varchar" Mode="In" />
+          <Parameter Name="SN_X" Type="varchar" Mode="In" />
+          <Parameter Name="SN_Y" Type="varchar" Mode="In" />
+          <Parameter Name="Gecikme" Type="varchar" Mode="In" />
+          <Parameter Name="SKT_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="SN_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="LOT_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="KolidekiShrink" Type="int" Mode="In" />
+          <Parameter Name="ShrinkdekiÜrün" Type="int" Mode="In" />
+          <Parameter Name="PalettekiKoli" Type="int" Mode="In" />
+          <Parameter Name="FirmaID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ÜrünlerGüncelle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ÜrünAdı" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN" Type="varchar" Mode="In" />
+          <Parameter Name="BarcodeSize" Type="int" Mode="In" />
+          <Parameter Name="SKT_X" Type="varchar" Mode="In" />
+          <Parameter Name="SKT_Y" Type="varchar" Mode="In" />
+          <Parameter Name="LOT_X" Type="varchar" Mode="In" />
+          <Parameter Name="LOT_Y" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN_X" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN_Y" Type="varchar" Mode="In" />
+          <Parameter Name="SN_X" Type="varchar" Mode="In" />
+          <Parameter Name="SN_Y" Type="varchar" Mode="In" />
+          <Parameter Name="Gecikme" Type="varchar" Mode="In" />
+          <Parameter Name="SKT_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="SN_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="LOT_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="GTIN_FONT" Type="varchar" Mode="In" />
+          <Parameter Name="KolidekiShrink" Type="int" Mode="In" />
+          <Parameter Name="ShrinkdekiÜrün" Type="int" Mode="In" />
+          <Parameter Name="PalettekiKoli" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ÜrünlerSil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ITS_ServerModelStoreContainer">
+          <EntitySet Name="BildirmTipi" EntityType="Self.BildirmTipi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EczaDeposu" EntityType="Self.EczaDeposu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EtiketCihazı" EntityType="Self.EtiketCihazı" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Etiketler" EntityType="Self.Etiketler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Firma" EntityType="Self.Firma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaKoli" EntityType="Self.FirmaKoli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaPalet" EntityType="Self.FirmaPalet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaShrink" EntityType="Self.FirmaShrink" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FirmaÜrün" EntityType="Self.FirmaÜrün" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inkjet" EntityType="Self.inkjet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="İşEmri" EntityType="Self.İşEmri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kamera" EntityType="Self.Kamera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Makinalar" EntityType="Self.Makinalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLC" EntityType="Self.PLC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Satış" EntityType="Self.Satış" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transfer" EntityType="Self.Transfer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMakina" EntityType="Self.UserMakina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ürünler" EntityType="Self.Ürünler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="işemriListele" EntityType="Self.işemriListele" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [işemriListele].[İşEmriID] AS [İşEmriID], 
+    [işemriListele].[Makina] AS [Makina], 
+    [işemriListele].[Ürün Adı] AS [Ürün Adı], 
+    [işemriListele].[SN] AS [SN], 
+    [işemriListele].[MaxSn] AS [MaxSn], 
+    [işemriListele].[ÜretimMiktarı] AS [ÜretimMiktarı], 
+    [işemriListele].[LOT] AS [LOT], 
+    [işemriListele].[SKT] AS [SKT], 
+    [işemriListele].[Tarih] AS [Tarih], 
+    [işemriListele].[Durum] AS [Durum], 
+    [işemriListele].[ihracat] AS [ihracat], 
+    [işemriListele].[MFG] AS [MFG], 
+    [işemriListele].[MakinaIP] AS [MakinaIP], 
+    [işemriListele].[Etiket] AS [Etiket], 
+    [işemriListele].[EtiketIP] AS [EtiketIP], 
+    [işemriListele].[Inkjet] AS [Inkjet], 
+    [işemriListele].[InkjetPort] AS [InkjetPort], 
+    [işemriListele].[Kamera] AS [Kamera], 
+    [işemriListele].[KameraIP] AS [KameraIP]
+    FROM [dbo].[işemriListele] AS [işemriListele]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="KullanıcılarıAdSoyadaGöreListele" EntityType="Self.KullanıcılarıAdSoyadaGöreListele" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [KullanıcılarıAdSoyadaGöreListele].[Id] AS [Id], 
+    [KullanıcılarıAdSoyadaGöreListele].[Adı Soyadı] AS [Adı Soyadı]
+    FROM [dbo].[KullanıcılarıAdSoyadaGöreListele] AS [KullanıcılarıAdSoyadaGöreListele]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BildirmTipi_FirmaÜrün" Association="Self.FK_BildirmTipi_FirmaÜrün">
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+            <End Role="BildirmTipi" EntitySet="BildirmTipi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etiketler_EtiketCihazı" Association="Self.FK_Etiketler_EtiketCihazı">
+            <End Role="EtiketCihazı" EntitySet="EtiketCihazı" />
+            <End Role="Etiketler" EntitySet="Etiketler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaKoli_İşEmri" Association="Self.FK_FirmaKoli_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaKoli" EntitySet="FirmaKoli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaKoli_Satış" Association="Self.FK_FirmaKoli_Satış">
+            <End Role="Satış" EntitySet="Satış" />
+            <End Role="FirmaKoli" EntitySet="FirmaKoli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaPalet_İşEmri" Association="Self.FK_FirmaPalet_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaPalet" EntitySet="FirmaPalet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaShrink_İşEmri" Association="Self.FK_FirmaShrink_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaShrink" EntitySet="FirmaShrink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaÜrün_İşEmri" Association="Self.FK_FirmaÜrün_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaÜrün_Satış" Association="Self.FK_FirmaÜrün_Satış">
+            <End Role="Satış" EntitySet="Satış" />
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaÜrün_Users" Association="Self.FK_FirmaÜrün_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_EtiketCihazı" Association="Self.FK_İşEmri_EtiketCihazı">
+            <End Role="EtiketCihazı" EntitySet="EtiketCihazı" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Etiketler" Association="Self.FK_İşEmri_Etiketler">
+            <End Role="Etiketler" EntitySet="Etiketler" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Firma" Association="Self.FK_İşEmri_Firma">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_inkjet" Association="Self.FK_İşEmri_inkjet">
+            <End Role="inkjet" EntitySet="inkjet" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Kamera" Association="Self.FK_İşEmri_Kamera">
+            <End Role="Kamera" EntitySet="Kamera" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_PLC" Association="Self.FK_İşEmri_PLC">
+            <End Role="PLC" EntitySet="PLC" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Ürünler" Association="Self.FK_İşEmri_Ürünler">
+            <End Role="Ürünler" EntitySet="Ürünler" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satış_EczaDeposu" Association="Self.FK_Satış_EczaDeposu">
+            <End Role="EczaDeposu" EntitySet="EczaDeposu" />
+            <End Role="Satış" EntitySet="Satış" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satış_EczaDeposu1" Association="Self.FK_Satış_EczaDeposu1">
+            <End Role="EczaDeposu" EntitySet="EczaDeposu" />
+            <End Role="Satış" EntitySet="Satış" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satış_Firma" Association="Self.FK_Satış_Firma">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Satış" EntitySet="Satış" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transfer_Satış" Association="Self.FK_Transfer_Satış">
+            <End Role="Satış" EntitySet="Satış" />
+            <End Role="Transfer" EntitySet="Transfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMakina_Makinalar" Association="Self.FK_UserMakina_Makinalar">
+            <End Role="Makinalar" EntitySet="Makinalar" />
+            <End Role="UserMakina" EntitySet="UserMakina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMakina_Users1" Association="Self.FK_UserMakina_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserMakina" EntitySet="UserMakina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ürünler_Firma1" Association="Self.FK_Ürünler_Firma1">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Ürünler" EntitySet="Ürünler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITS_ServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BildirmTipi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipi" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <Property Name="ÜrünID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="FirmaÜrün" Relationship="Self.FK_BildirmTipi_FirmaÜrün" FromRole="BildirmTipi" ToRole="FirmaÜrün" />
+        </EntityType>
+        <EntityType Name="EczaDeposu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirmaAdı" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GLN" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="İl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="İlçe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Durum" Type="Boolean" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Adress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MerkezSube" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Satış" Relationship="Self.FK_Satış_EczaDeposu" FromRole="EczaDeposu" ToRole="Satış" />
+          <NavigationProperty Name="Satış1" Relationship="Self.FK_Satış_EczaDeposu1" FromRole="EczaDeposu" ToRole="Satış" />
+        </EntityType>
+        <EntityType Name="EtiketCihazı">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="port" Type="Int32" Nullable="false" />
+          <Property Name="MakinaNo" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Etiketler" Relationship="Self.FK_Etiketler_EtiketCihazı" FromRole="EtiketCihazı" ToRole="Etiketler" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_EtiketCihazı" FromRole="EtiketCihazı" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="Etiketler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Açıklama" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EtiketShirnk" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EtiketKoli" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EtiketPalet" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EtiketCihazId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EtiketCihazı" Relationship="Self.FK_Etiketler_EtiketCihazı" FromRole="Etiketler" ToRole="EtiketCihazı" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_Etiketler" FromRole="Etiketler" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="Firma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firma_Adı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Firma_GLN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITSID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ITSPW" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_Firma" FromRole="Firma" ToRole="İşEmri" />
+          <NavigationProperty Name="Satış" Relationship="Self.FK_Satış_Firma" FromRole="Firma" ToRole="Satış" />
+          <NavigationProperty Name="Ürünler" Relationship="Self.FK_Ürünler_Firma1" FromRole="Firma" ToRole="Ürünler" />
+        </EntityType>
+        <EntityType Name="FirmaKoli">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KoliID" Type="Int32" Nullable="false" />
+          <Property Name="isemriId" Type="Int32" Nullable="false" />
+          <Property Name="PaletID" Type="Int32" Nullable="false" />
+          <Property Name="Etiket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaNo" Type="Byte" />
+          <Property Name="SatışID" Type="Int32" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_FirmaKoli_İşEmri" FromRole="FirmaKoli" ToRole="İşEmri" />
+          <NavigationProperty Name="Satış" Relationship="Self.FK_FirmaKoli_Satış" FromRole="FirmaKoli" ToRole="Satış" />
+        </EntityType>
+        <EntityType Name="FirmaPalet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaletID" Type="Int32" Nullable="false" />
+          <Property Name="isEmriId" Type="Int32" Nullable="false" />
+          <Property Name="Etiket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaNo" Type="Byte" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_FirmaPalet_İşEmri" FromRole="FirmaPalet" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="FirmaShrink">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShrinkID" Type="Int32" Nullable="false" />
+          <Property Name="isemriId" Type="Int32" Nullable="false" />
+          <Property Name="PaletID" Type="Int32" Nullable="false" />
+          <Property Name="KoliID" Type="Int32" Nullable="false" />
+          <Property Name="Etiket" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaNo" Type="Byte" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_FirmaShrink_İşEmri" FromRole="FirmaShrink" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="FirmaÜrün">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isEmriId" Type="Int32" Nullable="false" />
+          <Property Name="PaletID" Type="Int32" Nullable="false" />
+          <Property Name="KoliID" Type="Int32" Nullable="false" />
+          <Property Name="ShrinkID" Type="Int32" Nullable="false" />
+          <Property Name="GTN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SKT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN" Type="Int64" Nullable="false" />
+          <Property Name="LOT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShrinkKarekod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="KoliKarekod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PaletKarekod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tarih" Type="DateTime" Precision="3" />
+          <Property Name="UsersID" Type="Int32" Nullable="false" />
+          <Property Name="BildirimID" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="HataKodu" Type="Int32" />
+          <Property Name="HataMesajı" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SatışID" Type="Int32" />
+          <Property Name="MakinaNo" Type="Byte" />
+          <NavigationProperty Name="BildirmTipi" Relationship="Self.FK_BildirmTipi_FirmaÜrün" FromRole="FirmaÜrün" ToRole="BildirmTipi" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_FirmaÜrün_İşEmri" FromRole="FirmaÜrün" ToRole="İşEmri" />
+          <NavigationProperty Name="Satış" Relationship="Self.FK_FirmaÜrün_Satış" FromRole="FirmaÜrün" ToRole="Satış" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_FirmaÜrün_Users" FromRole="FirmaÜrün" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="inkjet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="COM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MakinaNo" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_inkjet" FromRole="inkjet" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="İşEmri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GTN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SKT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Durum" Type="Boolean" Nullable="false" />
+          <Property Name="firmaid" Type="Int32" Nullable="false" />
+          <Property Name="kameraid" Type="Int32" Nullable="false" />
+          <Property Name="inkjetid" Type="Int32" Nullable="false" />
+          <Property Name="EtiketCihazıId" Type="Int32" Nullable="false" />
+          <Property Name="EtiketId" Type="Int32" />
+          <Property Name="PLCId" Type="Int32" Nullable="false" />
+          <Property Name="FirmaUrunlerId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="isSended" Type="Boolean" Nullable="false" />
+          <Property Name="MaxSn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ShrinkEtiketi" Type="Boolean" Nullable="false" />
+          <Property Name="KoliEtiketi" Type="Boolean" Nullable="false" />
+          <Property Name="PaletEtiketi" Type="Boolean" Nullable="false" />
+          <Property Name="MakinaNo" Type="Byte" Nullable="false" />
+          <Property Name="ÜretimMiktarı" Type="Int32" Nullable="false" />
+          <Property Name="ShrinkMiktarı" Type="Int32" Nullable="false" />
+          <Property Name="KoliMiktarı" Type="Int32" Nullable="false" />
+          <Property Name="PaletMiktarı" Type="Int32" Nullable="false" />
+          <Property Name="MaxShrinkID" Type="Int32" Nullable="false" />
+          <Property Name="MaxKoliID" Type="Int32" Nullable="false" />
+          <Property Name="MaxPaletID" Type="Int32" Nullable="false" />
+          <Property Name="MinShrinkID" Type="Int32" Nullable="false" />
+          <Property Name="MinKoliID" Type="Int32" Nullable="false" />
+          <Property Name="MinPaletID" Type="Int32" Nullable="false" />
+          <Property Name="ihracat" Type="Boolean" Nullable="false" />
+          <Property Name="MFG" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EtiketCihazı" Relationship="Self.FK_İşEmri_EtiketCihazı" FromRole="İşEmri" ToRole="EtiketCihazı" />
+          <NavigationProperty Name="Etiketler" Relationship="Self.FK_İşEmri_Etiketler" FromRole="İşEmri" ToRole="Etiketler" />
+          <NavigationProperty Name="Firma" Relationship="Self.FK_İşEmri_Firma" FromRole="İşEmri" ToRole="Firma" />
+          <NavigationProperty Name="FirmaKoli" Relationship="Self.FK_FirmaKoli_İşEmri" FromRole="İşEmri" ToRole="FirmaKoli" />
+          <NavigationProperty Name="FirmaPalet" Relationship="Self.FK_FirmaPalet_İşEmri" FromRole="İşEmri" ToRole="FirmaPalet" />
+          <NavigationProperty Name="FirmaShrink" Relationship="Self.FK_FirmaShrink_İşEmri" FromRole="İşEmri" ToRole="FirmaShrink" />
+          <NavigationProperty Name="FirmaÜrün" Relationship="Self.FK_FirmaÜrün_İşEmri" FromRole="İşEmri" ToRole="FirmaÜrün" />
+          <NavigationProperty Name="inkjet" Relationship="Self.FK_İşEmri_inkjet" FromRole="İşEmri" ToRole="inkjet" />
+          <NavigationProperty Name="Kamera" Relationship="Self.FK_İşEmri_Kamera" FromRole="İşEmri" ToRole="Kamera" />
+          <NavigationProperty Name="PLC" Relationship="Self.FK_İşEmri_PLC" FromRole="İşEmri" ToRole="PLC" />
+          <NavigationProperty Name="Ürünler" Relationship="Self.FK_İşEmri_Ürünler" FromRole="İşEmri" ToRole="Ürünler" />
+        </EntityType>
+        <EntityType Name="Kamera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="port" Type="Int32" Nullable="false" />
+          <Property Name="MakinaNo" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_Kamera" FromRole="Kamera" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="Makinalar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MakinaNo" Type="Byte" Nullable="false" />
+          <Property Name="HWID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Açıklama" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MakinaIP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserMakina" Relationship="Self.FK_UserMakina_Makinalar" FromRole="Makinalar" ToRole="UserMakina" />
+        </EntityType>
+        <EntityType Name="PLC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="port" Type="Int32" />
+          <Property Name="MakinaNo" Type="Byte" Nullable="false" />
+          <Property Name="Com" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_PLC" FromRole="PLC" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="Satış">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MerkezDepoID" Type="Int32" Nullable="false" />
+          <Property Name="Durumu" Type="Boolean" Nullable="false" />
+          <Property Name="ÜretimFirmaID" Type="Int32" Nullable="false" />
+          <Property Name="SiparişNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AlıcıŞubeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EczaDeposu" Relationship="Self.FK_Satış_EczaDeposu" FromRole="Satış" ToRole="EczaDeposu" />
+          <NavigationProperty Name="EczaDeposu1" Relationship="Self.FK_Satış_EczaDeposu1" FromRole="Satış" ToRole="EczaDeposu" />
+          <NavigationProperty Name="Firma" Relationship="Self.FK_Satış_Firma" FromRole="Satış" ToRole="Firma" />
+          <NavigationProperty Name="FirmaKoli" Relationship="Self.FK_FirmaKoli_Satış" FromRole="Satış" ToRole="FirmaKoli" />
+          <NavigationProperty Name="FirmaÜrün" Relationship="Self.FK_FirmaÜrün_Satış" FromRole="Satış" ToRole="FirmaÜrün" />
+          <NavigationProperty Name="Transfer" Relationship="Self.FK_Transfer_Satış" FromRole="Satış" ToRole="Transfer" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transfer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransferID" Type="Int64" Nullable="false" />
+          <Property Name="SatışID" Type="Int32" />
+          <NavigationProperty Name="Satış" Relationship="Self.FK_Transfer_Satış" FromRole="Transfer" ToRole="Satış" />
+        </EntityType>
+        <EntityType Name="UserMakina">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MakinaID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MakinaID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Makinalar" Relationship="Self.FK_UserMakina_Makinalar" FromRole="UserMakina" ToRole="Makinalar" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserMakina_Users1" FromRole="UserMakina" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="admin" Type="Boolean" Nullable="false" />
+          <Property Name="adı" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="soyadı" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="eposta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FirmaÜrün" Relationship="Self.FK_FirmaÜrün_Users" FromRole="Users" ToRole="FirmaÜrün" />
+          <NavigationProperty Name="UserMakina" Relationship="Self.FK_UserMakina_Users1" FromRole="Users" ToRole="UserMakina" />
+        </EntityType>
+        <EntityType Name="Ürünler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ürün_Adı" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GTIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Barcodesize" Type="Int32" Nullable="false" />
+          <Property Name="SKT_X" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SKT_Y" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOT_X" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOT_Y" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GTIN_X" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GTIN_Y" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN_X" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN_Y" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gecikme" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SKT_FONT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SN_FONT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOT_Font" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GTIN_FONT" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KolidekiShrik" Type="Int32" Nullable="false" />
+          <Property Name="ShrinkdekiÜrün" Type="Int32" Nullable="false" />
+          <Property Name="PalettekiKoli" Type="Int32" Nullable="false" />
+          <Property Name="Rafömrü" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FİrmaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Firma" Relationship="Self.FK_Ürünler_Firma1" FromRole="Ürünler" ToRole="Firma" />
+          <NavigationProperty Name="İşEmri" Relationship="Self.FK_İşEmri_Ürünler" FromRole="Ürünler" ToRole="İşEmri" />
+        </EntityType>
+        <EntityType Name="KullanıcılarıAdSoyadaGöreListele">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adı_Soyadı" Type="String" MaxLength="41" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_BildirmTipi_FirmaÜrün">
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="1" />
+          <End Role="BildirmTipi" Type="Self.BildirmTipi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FirmaÜrün">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BildirmTipi">
+              <PropertyRef Name="ÜrünID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satış_EczaDeposu">
+          <End Role="EczaDeposu" Type="Self.EczaDeposu" Multiplicity="1" />
+          <End Role="Satış" Type="Self.Satış" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EczaDeposu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satış">
+              <PropertyRef Name="MerkezDepoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satış_EczaDeposu1">
+          <End Role="EczaDeposu" Type="Self.EczaDeposu" Multiplicity="1" />
+          <End Role="Satış" Type="Self.Satış" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EczaDeposu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satış">
+              <PropertyRef Name="AlıcıŞubeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Etiketler_EtiketCihazı">
+          <End Role="EtiketCihazı" Type="Self.EtiketCihazı" Multiplicity="1" />
+          <End Role="Etiketler" Type="Self.Etiketler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EtiketCihazı">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Etiketler">
+              <PropertyRef Name="EtiketCihazId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_EtiketCihazı">
+          <End Role="EtiketCihazı" Type="Self.EtiketCihazı" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EtiketCihazı">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="EtiketCihazıId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Etiketler">
+          <End Role="Etiketler" Type="Self.Etiketler" Multiplicity="0..1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Etiketler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="EtiketId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Firma">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="firmaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satış_Firma">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Satış" Type="Self.Satış" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satış">
+              <PropertyRef Name="ÜretimFirmaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ürünler_Firma1">
+          <End Role="Firma" Type="Self.Firma" Multiplicity="1" />
+          <End Role="Ürünler" Type="Self.Ürünler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ürünler">
+              <PropertyRef Name="FİrmaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaKoli_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaKoli" Type="Self.FirmaKoli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaKoli">
+              <PropertyRef Name="isemriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaKoli_Satış">
+          <End Role="Satış" Type="Self.Satış" Multiplicity="0..1" />
+          <End Role="FirmaKoli" Type="Self.FirmaKoli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satış">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaKoli">
+              <PropertyRef Name="SatışID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaPalet_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaPalet" Type="Self.FirmaPalet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaPalet">
+              <PropertyRef Name="isEmriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaShrink_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaShrink" Type="Self.FirmaShrink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaShrink">
+              <PropertyRef Name="isemriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaÜrün_İşEmri">
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="İşEmri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrün">
+              <PropertyRef Name="isEmriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaÜrün_Satış">
+          <End Role="Satış" Type="Self.Satış" Multiplicity="0..1" />
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satış">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrün">
+              <PropertyRef Name="SatışID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FirmaÜrün_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="FirmaÜrün" Type="Self.FirmaÜrün" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FirmaÜrün">
+              <PropertyRef Name="UsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_inkjet">
+          <End Role="inkjet" Type="Self.inkjet" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inkjet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="inkjetid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Kamera">
+          <End Role="Kamera" Type="Self.Kamera" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kamera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="kameraid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_PLC">
+          <End Role="PLC" Type="Self.PLC" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PLC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="PLCId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_İşEmri_Ürünler">
+          <End Role="Ürünler" Type="Self.Ürünler" Multiplicity="1" />
+          <End Role="İşEmri" Type="Self.İşEmri" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ürünler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="İşEmri">
+              <PropertyRef Name="FirmaUrunlerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMakina_Makinalar">
+          <End Role="Makinalar" Type="Self.Makinalar" Multiplicity="1" />
+          <End Role="UserMakina" Type="Self.UserMakina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Makinalar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMakina">
+              <PropertyRef Name="MakinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transfer_Satış">
+          <End Role="Satış" Type="Self.Satış" Multiplicity="0..1" />
+          <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satış">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transfer">
+              <PropertyRef Name="SatışID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMakina_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserMakina" Type="Self.UserMakina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserMakina">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITS_ServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BildirmTipi" EntityType="Self.BildirmTipi" />
+          <EntitySet Name="EczaDeposu" EntityType="Self.EczaDeposu" />
+          <EntitySet Name="EtiketCihazı" EntityType="Self.EtiketCihazı" />
+          <EntitySet Name="Etiketler" EntityType="Self.Etiketler" />
+          <EntitySet Name="Firma" EntityType="Self.Firma" />
+          <EntitySet Name="FirmaKoli" EntityType="Self.FirmaKoli" />
+          <EntitySet Name="FirmaPalet" EntityType="Self.FirmaPalet" />
+          <EntitySet Name="FirmaShrink" EntityType="Self.FirmaShrink" />
+          <EntitySet Name="FirmaÜrün" EntityType="Self.FirmaÜrün" />
+          <EntitySet Name="inkjet" EntityType="Self.inkjet" />
+          <EntitySet Name="İşEmri" EntityType="Self.İşEmri" />
+          <EntitySet Name="Kamera" EntityType="Self.Kamera" />
+          <EntitySet Name="Makinalar" EntityType="Self.Makinalar" />
+          <EntitySet Name="PLC" EntityType="Self.PLC" />
+          <EntitySet Name="Satış" EntityType="Self.Satış" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transfer" EntityType="Self.Transfer" />
+          <EntitySet Name="UserMakina" EntityType="Self.UserMakina" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Ürünler" EntityType="Self.Ürünler" />
+          <EntitySet Name="KullanıcılarıAdSoyadaGöreListele" EntityType="Self.KullanıcılarıAdSoyadaGöreListele" />
+          <AssociationSet Name="FK_BildirmTipi_FirmaÜrün" Association="Self.FK_BildirmTipi_FirmaÜrün">
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+            <End Role="BildirmTipi" EntitySet="BildirmTipi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satış_EczaDeposu" Association="Self.FK_Satış_EczaDeposu">
+            <End Role="EczaDeposu" EntitySet="EczaDeposu" />
+            <End Role="Satış" EntitySet="Satış" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satış_EczaDeposu1" Association="Self.FK_Satış_EczaDeposu1">
+            <End Role="EczaDeposu" EntitySet="EczaDeposu" />
+            <End Role="Satış" EntitySet="Satış" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Etiketler_EtiketCihazı" Association="Self.FK_Etiketler_EtiketCihazı">
+            <End Role="EtiketCihazı" EntitySet="EtiketCihazı" />
+            <End Role="Etiketler" EntitySet="Etiketler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_EtiketCihazı" Association="Self.FK_İşEmri_EtiketCihazı">
+            <End Role="EtiketCihazı" EntitySet="EtiketCihazı" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Etiketler" Association="Self.FK_İşEmri_Etiketler">
+            <End Role="Etiketler" EntitySet="Etiketler" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Firma" Association="Self.FK_İşEmri_Firma">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satış_Firma" Association="Self.FK_Satış_Firma">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Satış" EntitySet="Satış" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ürünler_Firma1" Association="Self.FK_Ürünler_Firma1">
+            <End Role="Firma" EntitySet="Firma" />
+            <End Role="Ürünler" EntitySet="Ürünler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaKoli_İşEmri" Association="Self.FK_FirmaKoli_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaKoli" EntitySet="FirmaKoli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaKoli_Satış" Association="Self.FK_FirmaKoli_Satış">
+            <End Role="Satış" EntitySet="Satış" />
+            <End Role="FirmaKoli" EntitySet="FirmaKoli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaPalet_İşEmri" Association="Self.FK_FirmaPalet_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaPalet" EntitySet="FirmaPalet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaShrink_İşEmri" Association="Self.FK_FirmaShrink_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaShrink" EntitySet="FirmaShrink" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaÜrün_İşEmri" Association="Self.FK_FirmaÜrün_İşEmri">
+            <End Role="İşEmri" EntitySet="İşEmri" />
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaÜrün_Satış" Association="Self.FK_FirmaÜrün_Satış">
+            <End Role="Satış" EntitySet="Satış" />
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FirmaÜrün_Users" Association="Self.FK_FirmaÜrün_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="FirmaÜrün" EntitySet="FirmaÜrün" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_inkjet" Association="Self.FK_İşEmri_inkjet">
+            <End Role="inkjet" EntitySet="inkjet" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Kamera" Association="Self.FK_İşEmri_Kamera">
+            <End Role="Kamera" EntitySet="Kamera" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_PLC" Association="Self.FK_İşEmri_PLC">
+            <End Role="PLC" EntitySet="PLC" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_İşEmri_Ürünler" Association="Self.FK_İşEmri_Ürünler">
+            <End Role="Ürünler" EntitySet="Ürünler" />
+            <End Role="İşEmri" EntitySet="İşEmri" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMakina_Makinalar" Association="Self.FK_UserMakina_Makinalar">
+            <End Role="Makinalar" EntitySet="Makinalar" />
+            <End Role="UserMakina" EntitySet="UserMakina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transfer_Satış" Association="Self.FK_Transfer_Satış">
+            <End Role="Satış" EntitySet="Satış" />
+            <End Role="Transfer" EntitySet="Transfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMakina_Users1" Association="Self.FK_UserMakina_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserMakina" EntitySet="UserMakina" />
+          </AssociationSet>
+          <FunctionImport Name="ClienttenEklenenFirmaKoli">
+            <Parameter Name="işemriID" Mode="In" Type="Int32" />
+            <Parameter Name="PaletID" Mode="In" Type="Int32" />
+            <Parameter Name="KoliID" Mode="In" Type="Int32" />
+            <Parameter Name="Etiket" Mode="In" Type="String" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="ClienttenEklenenFirmaPalet">
+            <Parameter Name="işemriID" Mode="In" Type="Int32" />
+            <Parameter Name="PaletID" Mode="In" Type="Int32" />
+            <Parameter Name="Etiket" Mode="In" Type="String" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="ClienttenEklenenFirmaShrink">
+            <Parameter Name="işemriID" Mode="In" Type="Int32" />
+            <Parameter Name="PaletID" Mode="In" Type="Int32" />
+            <Parameter Name="KoliID" Mode="In" Type="Int32" />
+            <Parameter Name="ShrinkID" Mode="In" Type="Int32" />
+            <Parameter Name="Etiket" Mode="In" Type="String" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="ClienttenEklenenFirmaürün">
+            <Parameter Name="işemriID" Mode="In" Type="Int32" />
+            <Parameter Name="PaletID" Mode="In" Type="Int32" />
+            <Parameter Name="KoliID" Mode="In" Type="Int32" />
+            <Parameter Name="ShrinkID" Mode="In" Type="Int32" />
+            <Parameter Name="GTN" Mode="In" Type="String" />
+            <Parameter Name="SKT" Mode="In" Type="String" />
+            <Parameter Name="SN" Mode="In" Type="String" />
+            <Parameter Name="LOT" Mode="In" Type="String" />
+            <Parameter Name="ShrinkKarekod" Mode="In" Type="String" />
+            <Parameter Name="KoliKarekod" Mode="In" Type="String" />
+            <Parameter Name="PaletKareKod" Mode="In" Type="String" />
+            <Parameter Name="Tarih" Mode="In" Type="DateTime" />
+            <Parameter Name="UserID" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="Deneme" ReturnType="Collection(Int32)">
+          <Parameter Name="prmIsEmri" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EtiketCihazıEkle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EtiketCihazıGüncelle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EtiketCihazıSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EtiketEkle">
+            <Parameter Name="Açıklama" Mode="In" Type="String" />
+            <Parameter Name="EtiketShrink" Mode="In" Type="String" />
+            <Parameter Name="EtiketKoli" Mode="In" Type="String" />
+            <Parameter Name="EtiketPalet" Mode="In" Type="String" />
+            <Parameter Name="EtiketCihazıID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EtiketGüncelle">
+            <Parameter Name="Açıklama" Mode="In" Type="String" />
+            <Parameter Name="EtiketShrink" Mode="In" Type="String" />
+            <Parameter Name="EtiketKoli" Mode="In" Type="String" />
+            <Parameter Name="EtiketPalet" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="EtiketSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FirmaEkle">
+            <Parameter Name="FirmaAdı" Mode="In" Type="String" />
+            <Parameter Name="FirmaGLN" Mode="In" Type="String" />
+            <Parameter Name="ITSID" Mode="In" Type="String" />
+            <Parameter Name="ITSPW" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FirmaGüncelle">
+            <Parameter Name="FirmaAdı" Mode="In" Type="String" />
+            <Parameter Name="FirmaGLN" Mode="In" Type="String" />
+            <Parameter Name="ITSID" Mode="In" Type="String" />
+            <Parameter Name="ITSPW" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FirmaSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="inkjetEkle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="COM" Mode="In" Type="String" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="inkjetGüncelle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="COM" Mode="In" Type="String" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="inkjetSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertingProc" />
+          <FunctionImport Name="İşEmriEkle">
+            <Parameter Name="GTN" Mode="In" Type="String" />
+            <Parameter Name="SN" Mode="In" Type="String" />
+            <Parameter Name="LOT" Mode="In" Type="String" />
+            <Parameter Name="SKT" Mode="In" Type="DateTime" />
+            <Parameter Name="FirmaID" Mode="In" Type="Int32" />
+            <Parameter Name="KameraID" Mode="In" Type="Int32" />
+            <Parameter Name="inkjetID" Mode="In" Type="Int32" />
+            <Parameter Name="EtiketCihazı" Mode="In" Type="Int32" />
+            <Parameter Name="EtiketId" Mode="In" Type="Int32" />
+            <Parameter Name="PLCID" Mode="In" Type="Int32" />
+            <Parameter Name="FirmanınÜrünüID" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ShrinkEtiketi" Mode="In" Type="Boolean" />
+            <Parameter Name="KoliEtiketi" Mode="In" Type="Boolean" />
+            <Parameter Name="PaletEtiketi" Mode="In" Type="Boolean" />
+            <Parameter Name="ÜretimMiktarı" Mode="In" Type="Int32" />
+            <Parameter Name="işemriTarihi" Mode="In" Type="DateTime" />
+            <Parameter Name="ihracat" Mode="In" Type="Boolean" />
+            <Parameter Name="MFG" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="İşEmriEkleWithID">
+            <Parameter Name="işemriId" Mode="In" Type="Int32" />
+            <Parameter Name="GTN" Mode="In" Type="String" />
+            <Parameter Name="SN" Mode="In" Type="Int64" />
+            <Parameter Name="LOT" Mode="In" Type="String" />
+            <Parameter Name="SKT" Mode="In" Type="DateTime" />
+            <Parameter Name="FirmaID" Mode="In" Type="Int32" />
+            <Parameter Name="KameraID" Mode="In" Type="Int32" />
+            <Parameter Name="inkjetID" Mode="In" Type="Int32" />
+            <Parameter Name="EtiketCihazıId" Mode="In" Type="Int32" />
+            <Parameter Name="EtiketId" Mode="In" Type="Int32" />
+            <Parameter Name="PLCID" Mode="In" Type="Int32" />
+            <Parameter Name="FirmanınÜrünüID" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ÜretimMiktarı" Mode="In" Type="Int32" />
+            <Parameter Name="işemriTarihi" Mode="In" Type="DateTime" />
+            <Parameter Name="Maxsn" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="İşEmriGüncelle">
+            <Parameter Name="GTN" Mode="In" Type="String" />
+            <Parameter Name="SN" Mode="In" Type="String" />
+            <Parameter Name="LOT" Mode="In" Type="String" />
+            <Parameter Name="SKT" Mode="In" Type="DateTime" />
+            <Parameter Name="FirmaID" Mode="In" Type="Int32" />
+            <Parameter Name="KameraID" Mode="In" Type="Int32" />
+            <Parameter Name="inkjetID" Mode="In" Type="Int32" />
+            <Parameter Name="EtiketCihazı" Mode="In" Type="Int32" />
+            <Parameter Name="EtiketId" Mode="In" Type="Int32" />
+            <Parameter Name="PLCID" Mode="In" Type="Int32" />
+            <Parameter Name="FirmanınÜrünüID" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ShrinkEtiketi" Mode="In" Type="Boolean" />
+            <Parameter Name="KoliEtiketi" Mode="In" Type="Boolean" />
+            <Parameter Name="PaletEtiketi" Mode="In" Type="Boolean" />
+            <Parameter Name="ihracat" Mode="In" Type="Boolean" />
+            <Parameter Name="ÜretimMiktarı" Mode="In" Type="Int32" />
+            <Parameter Name="MFG" Mode="In" Type="DateTime" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="İşEmriSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KameraEkle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KameraGüncelle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KameraSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KarmaKoliOluştur">
+            <Parameter Name="isemriID" Mode="In" Type="Int32" />
+            <Parameter Name="firmaGLN" Mode="In" Type="String" />
+            <Parameter Name="satışID" Mode="In" Type="Int32" />
+            <Parameter Name="etiket" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="KullanıcıEkle">
+            <Parameter Name="KullanıcıAdı" Mode="In" Type="String" />
+            <Parameter Name="KullanıcıŞifresi" Mode="In" Type="String" />
+            <Parameter Name="görevi" Mode="In" Type="String" />
+            <Parameter Name="Yönetici" Mode="In" Type="Boolean" />
+            <Parameter Name="Adı" Mode="In" Type="String" />
+            <Parameter Name="Soyadı" Mode="In" Type="String" />
+            <Parameter Name="eposta" Mode="In" Type="String" />
+            <Parameter Name="tel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="KullanıcıGüncelle">
+            <Parameter Name="KullanıcıAdı" Mode="In" Type="String" />
+            <Parameter Name="KullanıcıŞifresi" Mode="In" Type="String" />
+            <Parameter Name="görevi" Mode="In" Type="String" />
+            <Parameter Name="Yönetici" Mode="In" Type="Boolean" />
+            <Parameter Name="Adı" Mode="In" Type="String" />
+            <Parameter Name="Soyadı" Mode="In" Type="String" />
+            <Parameter Name="eposta" Mode="In" Type="String" />
+            <Parameter Name="tel" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KullanıcıMakinaEkle">
+            <Parameter Name="MakinaID" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KullanıcıMakinaGüncelle">
+            <Parameter Name="MakinaID" Mode="In" Type="Int32" />
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KullanıcıMakinaSil">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="KullanıcıSil">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MakinaEkle">
+            <Parameter Name="MakinaNo" Mode="In" Type="Byte" />
+            <Parameter Name="HWID" Mode="In" Type="String" />
+            <Parameter Name="Açıklama" Mode="In" Type="String" />
+            <Parameter Name="MakinaIP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MakinaGüncelle">
+            <Parameter Name="MakinaNo" Mode="In" Type="Byte" />
+            <Parameter Name="HWID" Mode="In" Type="String" />
+            <Parameter Name="Açıklama" Mode="In" Type="String" />
+            <Parameter Name="MakinaIP" Mode="In" Type="String" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MakinaSil">
+          <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PLCEkle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PLCGüncelle">
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="Port" Mode="In" Type="Int32" />
+            <Parameter Name="MakinaNo" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PLCSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(ITS_ServerModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(ITS_ServerModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_KontrolBasamagı">
+            <Parameter Name="Deger" Mode="In" Type="String" />
+            <Parameter Name="çıktı" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Test">
+          <Parameter Name="denem" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ÜrünlerEkle">
+            <Parameter Name="ÜrünAdı" Mode="In" Type="String" />
+            <Parameter Name="GTIN" Mode="In" Type="String" />
+            <Parameter Name="BarcodeSize" Mode="In" Type="Int32" />
+            <Parameter Name="SKT_X" Mode="In" Type="String" />
+            <Parameter Name="SKT_Y" Mode="In" Type="String" />
+            <Parameter Name="LOT_X" Mode="In" Type="String" />
+            <Parameter Name="LOT_Y" Mode="In" Type="String" />
+            <Parameter Name="GTIN_X" Mode="In" Type="String" />
+            <Parameter Name="GTIN_Y" Mode="In" Type="String" />
+            <Parameter Name="SN_X" Mode="In" Type="String" />
+            <Parameter Name="SN_Y" Mode="In" Type="String" />
+            <Parameter Name="Gecikme" Mode="In" Type="String" />
+            <Parameter Name="SKT_FONT" Mode="In" Type="String" />
+            <Parameter Name="SN_FONT" Mode="In" Type="String" />
+            <Parameter Name="LOT_FONT" Mode="In" Type="String" />
+            <Parameter Name="GTIN_FONT" Mode="In" Type="String" />
+            <Parameter Name="KolidekiShrink" Mode="In" Type="Int32" />
+            <Parameter Name="ShrinkdekiÜrün" Mode="In" Type="Int32" />
+            <Parameter Name="PalettekiKoli" Mode="In" Type="Int32" />
+            <Parameter Name="FirmaID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ÜrünlerGüncelle">
+            <Parameter Name="ÜrünAdı" Mode="In" Type="String" />
+            <Parameter Name="GTIN" Mode="In" Type="String" />
+            <Parameter Name="BarcodeSize" Mode="In" Type="Int32" />
+            <Parameter Name="SKT_X" Mode="In" Type="String" />
+            <Parameter Name="SKT_Y" Mode="In" Type="String" />
+            <Parameter Name="LOT_X" Mode="In" Type="String" />
+            <Parameter Name="LOT_Y" Mode="In" Type="String" />
+            <Parameter Name="GTIN_X" Mode="In" Type="String" />
+            <Parameter Name="GTIN_Y" Mode="In" Type="String" />
+            <Parameter Name="SN_X" Mode="In" Type="String" />
+            <Parameter Name="SN_Y" Mode="In" Type="String" />
+            <Parameter Name="Gecikme" Mode="In" Type="String" />
+            <Parameter Name="SKT_FONT" Mode="In" Type="String" />
+            <Parameter Name="SN_FONT" Mode="In" Type="String" />
+            <Parameter Name="LOT_FONT" Mode="In" Type="String" />
+            <Parameter Name="GTIN_FONT" Mode="In" Type="String" />
+            <Parameter Name="KolidekiShrink" Mode="In" Type="Int32" />
+            <Parameter Name="ShrinkdekiÜrün" Mode="In" Type="Int32" />
+            <Parameter Name="PalettekiKoli" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ÜrünlerSil">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="işemriListele" EntityType="ITS_ServerModel.işemriListele" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="işemriListele">
+          <Key>
+            <PropertyRef Name="İşEmriID" />
+            <PropertyRef Name="Ürün_Adı" />
+            <PropertyRef Name="SN" />
+            <PropertyRef Name="ÜretimMiktarı" />
+            <PropertyRef Name="LOT" />
+            <PropertyRef Name="SKT" />
+            <PropertyRef Name="Tarih" />
+            <PropertyRef Name="Durum" />
+            <PropertyRef Name="ihracat" />
+            <PropertyRef Name="MakinaIP" />
+            <PropertyRef Name="Etiket" />
+            <PropertyRef Name="EtiketIP" />
+            <PropertyRef Name="Inkjet" />
+            <PropertyRef Name="InkjetPort" />
+            <PropertyRef Name="Kamera" />
+            <PropertyRef Name="KameraIP" />
+          </Key>
+          <Property Name="İşEmriID" Type="Int32" Nullable="false" />
+          <Property Name="Makina" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ürün_Adı" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MaxSn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ÜretimMiktarı" Type="Int32" Nullable="false" />
+          <Property Name="LOT" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SKT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Durum" Type="Boolean" Nullable="false" />
+          <Property Name="ihracat" Type="Boolean" Nullable="false" />
+          <Property Name="MFG" Type="DateTime" Precision="0" />
+          <Property Name="MakinaIP" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Etiket" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EtiketIP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Inkjet" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InkjetPort" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Kamera" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KameraIP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ITS_ServerModelStoreContainer" CdmEntityContainer="ITS_ServerEntities">
+          <EntitySetMapping Name="BildirmTipi">
+            <EntityTypeMapping TypeName="ITS_ServerModel.BildirmTipi">
+              <MappingFragment StoreEntitySet="BildirmTipi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tipi" ColumnName="Tipi" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="ÜrünID" ColumnName="ÜrünID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EczaDeposu">
+            <EntityTypeMapping TypeName="ITS_ServerModel.EczaDeposu">
+              <MappingFragment StoreEntitySet="EczaDeposu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirmaAdı" ColumnName="FirmaAdı" />
+                <ScalarProperty Name="GLN" ColumnName="GLN" />
+                <ScalarProperty Name="İl" ColumnName="İl" />
+                <ScalarProperty Name="İlçe" ColumnName="İlçe" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="MerkezSube" ColumnName="MerkezSube" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EtiketCihazı">
+            <EntityTypeMapping TypeName="ITS_ServerModel.EtiketCihazı">
+              <MappingFragment StoreEntitySet="EtiketCihazı">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etiketler">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Etiketler">
+              <MappingFragment StoreEntitySet="Etiketler">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+                <ScalarProperty Name="EtiketShirnk" ColumnName="EtiketShirnk" />
+                <ScalarProperty Name="EtiketKoli" ColumnName="EtiketKoli" />
+                <ScalarProperty Name="EtiketPalet" ColumnName="EtiketPalet" />
+                <ScalarProperty Name="EtiketCihazId" ColumnName="EtiketCihazId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firma">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Firma">
+              <MappingFragment StoreEntitySet="Firma">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firma_Adı" ColumnName="Firma Adı" />
+                <ScalarProperty Name="Firma_GLN" ColumnName="Firma GLN" />
+                <ScalarProperty Name="ITSID" ColumnName="ITSID" />
+                <ScalarProperty Name="ITSPW" ColumnName="ITSPW" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaKoli">
+            <EntityTypeMapping TypeName="ITS_ServerModel.FirmaKoli">
+              <MappingFragment StoreEntitySet="FirmaKoli">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KoliID" ColumnName="KoliID" />
+                <ScalarProperty Name="isemriId" ColumnName="isemriId" />
+                <ScalarProperty Name="PaletID" ColumnName="PaletID" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+                <ScalarProperty Name="SatışID" ColumnName="SatışID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaPalet">
+            <EntityTypeMapping TypeName="ITS_ServerModel.FirmaPalet">
+              <MappingFragment StoreEntitySet="FirmaPalet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaletID" ColumnName="PaletID" />
+                <ScalarProperty Name="isEmriId" ColumnName="isEmriId" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaShrink">
+            <EntityTypeMapping TypeName="ITS_ServerModel.FirmaShrink">
+              <MappingFragment StoreEntitySet="FirmaShrink">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ShrinkID" ColumnName="ShrinkID" />
+                <ScalarProperty Name="isemriId" ColumnName="isemriId" />
+                <ScalarProperty Name="PaletID" ColumnName="PaletID" />
+                <ScalarProperty Name="KoliID" ColumnName="KoliID" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FirmaÜrün">
+            <EntityTypeMapping TypeName="ITS_ServerModel.FirmaÜrün">
+              <MappingFragment StoreEntitySet="FirmaÜrün">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="isEmriId" ColumnName="isEmriId" />
+                <ScalarProperty Name="PaletID" ColumnName="PaletID" />
+                <ScalarProperty Name="KoliID" ColumnName="KoliID" />
+                <ScalarProperty Name="ShrinkID" ColumnName="ShrinkID" />
+                <ScalarProperty Name="GTN" ColumnName="GTN" />
+                <ScalarProperty Name="SKT" ColumnName="SKT" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="LOT" ColumnName="LOT" />
+                <ScalarProperty Name="ShrinkKarekod" ColumnName="ShrinkKarekod" />
+                <ScalarProperty Name="KoliKarekod" ColumnName="KoliKarekod" />
+                <ScalarProperty Name="PaletKarekod" ColumnName="PaletKarekod" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+                <ScalarProperty Name="BildirimID" ColumnName="BildirimID" />
+                <ScalarProperty Name="HataKodu" ColumnName="HataKodu" />
+                <ScalarProperty Name="HataMesajı" ColumnName="HataMesajı" />
+                <ScalarProperty Name="SatışID" ColumnName="SatışID" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inkjet">
+            <EntityTypeMapping TypeName="ITS_ServerModel.inkjet">
+              <MappingFragment StoreEntitySet="inkjet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="COM" ColumnName="COM" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="İşEmri">
+            <EntityTypeMapping TypeName="ITS_ServerModel.İşEmri">
+              <MappingFragment StoreEntitySet="İşEmri">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GTN" ColumnName="GTN" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="LOT" ColumnName="LOT" />
+                <ScalarProperty Name="SKT" ColumnName="SKT" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="firmaid" ColumnName="firmaid" />
+                <ScalarProperty Name="kameraid" ColumnName="kameraid" />
+                <ScalarProperty Name="inkjetid" ColumnName="inkjetid" />
+                <ScalarProperty Name="EtiketCihazıId" ColumnName="EtiketCihazıId" />
+                <ScalarProperty Name="EtiketId" ColumnName="EtiketId" />
+                <ScalarProperty Name="PLCId" ColumnName="PLCId" />
+                <ScalarProperty Name="FirmaUrunlerId" ColumnName="FirmaUrunlerId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="isSended" ColumnName="isSended" />
+                <ScalarProperty Name="MaxSn" ColumnName="MaxSn" />
+                <ScalarProperty Name="ShrinkEtiketi" ColumnName="ShrinkEtiketi" />
+                <ScalarProperty Name="KoliEtiketi" ColumnName="KoliEtiketi" />
+                <ScalarProperty Name="PaletEtiketi" ColumnName="PaletEtiketi" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+                <ScalarProperty Name="ÜretimMiktarı" ColumnName="ÜretimMiktarı" />
+                <ScalarProperty Name="ShrinkMiktarı" ColumnName="ShrinkMiktarı" />
+                <ScalarProperty Name="KoliMiktarı" ColumnName="KoliMiktarı" />
+                <ScalarProperty Name="PaletMiktarı" ColumnName="PaletMiktarı" />
+                <ScalarProperty Name="MaxShrinkID" ColumnName="MaxShrinkID" />
+                <ScalarProperty Name="MaxKoliID" ColumnName="MaxKoliID" />
+                <ScalarProperty Name="MaxPaletID" ColumnName="MaxPaletID" />
+                <ScalarProperty Name="MinShrinkID" ColumnName="MinShrinkID" />
+                <ScalarProperty Name="MinKoliID" ColumnName="MinKoliID" />
+                <ScalarProperty Name="MinPaletID" ColumnName="MinPaletID" />
+                <ScalarProperty Name="ihracat" ColumnName="ihracat" />
+                <ScalarProperty Name="MFG" ColumnName="MFG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kamera">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Kamera">
+              <MappingFragment StoreEntitySet="Kamera">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Makinalar">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Makinalar">
+              <MappingFragment StoreEntitySet="Makinalar">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+                <ScalarProperty Name="HWID" ColumnName="HWID" />
+                <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+                <ScalarProperty Name="MakinaIP" ColumnName="MakinaIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLC">
+            <EntityTypeMapping TypeName="ITS_ServerModel.PLC">
+              <MappingFragment StoreEntitySet="PLC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="MakinaNo" ColumnName="MakinaNo" />
+                <ScalarProperty Name="Com" ColumnName="Com" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Satış">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Satış">
+              <MappingFragment StoreEntitySet="Satış">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="MerkezDepoID" ColumnName="MerkezDepoID" />
+                <ScalarProperty Name="Durumu" ColumnName="Durumu" />
+                <ScalarProperty Name="ÜretimFirmaID" ColumnName="ÜretimFirmaID" />
+                <ScalarProperty Name="SiparişNo" ColumnName="SiparişNo" />
+                <ScalarProperty Name="AlıcıŞubeID" ColumnName="AlıcıŞubeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ITS_ServerModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transfer">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Transfer">
+              <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TransferID" ColumnName="TransferID" />
+                <ScalarProperty Name="SatışID" ColumnName="SatışID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMakina">
+            <EntityTypeMapping TypeName="ITS_ServerModel.UserMakina">
+              <MappingFragment StoreEntitySet="UserMakina">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MakinaID" ColumnName="MakinaID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="adı" ColumnName="adı" />
+                <ScalarProperty Name="soyadı" ColumnName="soyadı" />
+                <ScalarProperty Name="eposta" ColumnName="eposta" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ürünler">
+            <EntityTypeMapping TypeName="ITS_ServerModel.Ürünler">
+              <MappingFragment StoreEntitySet="Ürünler">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ürün_Adı" ColumnName="Ürün Adı" />
+                <ScalarProperty Name="GTIN" ColumnName="GTIN" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Barcodesize" ColumnName="Barcodesize" />
+                <ScalarProperty Name="SKT_X" ColumnName="SKT_X" />
+                <ScalarProperty Name="SKT_Y" ColumnName="SKT_Y" />
+                <ScalarProperty Name="LOT_X" ColumnName="LOT_X" />
+                <ScalarProperty Name="LOT_Y" ColumnName="LOT_Y" />
+                <ScalarProperty Name="GTIN_X" ColumnName="GTIN_X" />
+                <ScalarProperty Name="GTIN_Y" ColumnName="GTIN_Y" />
+                <ScalarProperty Name="SN_X" ColumnName="SN_X" />
+                <ScalarProperty Name="SN_Y" ColumnName="SN_Y" />
+                <ScalarProperty Name="Gecikme" ColumnName="Gecikme" />
+                <ScalarProperty Name="SKT_FONT" ColumnName="SKT_FONT" />
+                <ScalarProperty Name="SN_FONT" ColumnName="SN_FONT" />
+                <ScalarProperty Name="LOT_Font" ColumnName="LOT_Font" />
+                <ScalarProperty Name="GTIN_FONT" ColumnName="GTIN_FONT" />
+                <ScalarProperty Name="KolidekiShrik" ColumnName="KolidekiShrik" />
+                <ScalarProperty Name="ShrinkdekiÜrün" ColumnName="ShrinkdekiÜrün" />
+                <ScalarProperty Name="PalettekiKoli" ColumnName="PalettekiKoli" />
+                <ScalarProperty Name="Rafömrü" ColumnName="Rafömrü" />
+                <ScalarProperty Name="FİrmaId" ColumnName="FİrmaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KullanıcılarıAdSoyadaGöreListele">
+            <EntityTypeMapping TypeName="ITS_ServerModel.KullanıcılarıAdSoyadaGöreListele">
+              <MappingFragment StoreEntitySet="KullanıcılarıAdSoyadaGöreListele">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adı_Soyadı" ColumnName="Adı Soyadı" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ClienttenEklenenFirmaKoli" FunctionName="ITS_ServerModel.Store.ClienttenEklenenFirmaKoli" />
+          <FunctionImportMapping FunctionImportName="ClienttenEklenenFirmaPalet" FunctionName="ITS_ServerModel.Store.ClienttenEklenenFirmaPalet" />
+          <FunctionImportMapping FunctionImportName="ClienttenEklenenFirmaShrink" FunctionName="ITS_ServerModel.Store.ClienttenEklenenFirmaShrink" />
+          <FunctionImportMapping FunctionImportName="ClienttenEklenenFirmaürün" FunctionName="ITS_ServerModel.Store.ClienttenEklenenFirmaürün" />
+          <FunctionImportMapping FunctionImportName="Deneme" FunctionName="ITS_ServerModel.Store.Deneme" />
+          <FunctionImportMapping FunctionImportName="EtiketCihazıEkle" FunctionName="ITS_ServerModel.Store.EtiketCihazıEkle" />
+          <FunctionImportMapping FunctionImportName="EtiketCihazıGüncelle" FunctionName="ITS_ServerModel.Store.EtiketCihazıGüncelle" />
+          <FunctionImportMapping FunctionImportName="EtiketCihazıSil" FunctionName="ITS_ServerModel.Store.EtiketCihazıSil" />
+          <FunctionImportMapping FunctionImportName="EtiketEkle" FunctionName="ITS_ServerModel.Store.EtiketEkle" />
+          <FunctionImportMapping FunctionImportName="EtiketGüncelle" FunctionName="ITS_ServerModel.Store.EtiketGüncelle" />
+          <FunctionImportMapping FunctionImportName="EtiketSil" FunctionName="ITS_ServerModel.Store.EtiketSil" />
+          <FunctionImportMapping FunctionImportName="FirmaEkle" FunctionName="ITS_ServerModel.Store.FirmaEkle" />
+          <FunctionImportMapping FunctionImportName="FirmaGüncelle" FunctionName="ITS_ServerModel.Store.FirmaGüncelle" />
+          <FunctionImportMapping FunctionImportName="FirmaSil" FunctionName="ITS_ServerModel.Store.FirmaSil" />
+          <FunctionImportMapping FunctionImportName="inkjetEkle" FunctionName="ITS_ServerModel.Store.inkjetEkle" />
+          <FunctionImportMapping FunctionImportName="inkjetGüncelle" FunctionName="ITS_ServerModel.Store.inkjetGüncelle" />
+          <FunctionImportMapping FunctionImportName="inkjetSil" FunctionName="ITS_ServerModel.Store.inkjetSil" />
+          <FunctionImportMapping FunctionImportName="insertingProc" FunctionName="ITS_ServerModel.Store.insertingProc" />
+          <FunctionImportMapping FunctionImportName="İşEmriEkle" FunctionName="ITS_ServerModel.Store.İşEmriEkle" />
+          <FunctionImportMapping FunctionImportName="İşEmriEkleWithID" FunctionName="ITS_ServerModel.Store.İşEmriEkleWithID" />
+          <FunctionImportMapping FunctionImportName="İşEmriGüncelle" FunctionName="ITS_ServerModel.Store.İşEmriGüncelle" />
+          <FunctionImportMapping FunctionImportName="İşEmriSil" FunctionName="ITS_ServerModel.Store.İşEmriSil" />
+          <FunctionImportMapping FunctionImportName="KameraEkle" FunctionName="ITS_ServerModel.Store.KameraEkle" />
+          <FunctionImportMapping FunctionImportName="KameraGüncelle" FunctionName="ITS_ServerModel.Store.KameraGüncelle" />
+          <FunctionImportMapping FunctionImportName="KameraSil" FunctionName="ITS_ServerModel.Store.KameraSil" />
+          <FunctionImportMapping FunctionImportName="KarmaKoliOluştur" FunctionName="ITS_ServerModel.Store.KarmaKoliOluştur" />
+          <FunctionImportMapping FunctionImportName="KullanıcıEkle" FunctionName="ITS_ServerModel.Store.KullanıcıEkle" />
+          <FunctionImportMapping FunctionImportName="KullanıcıGüncelle" FunctionName="ITS_ServerModel.Store.KullanıcıGüncelle" />
+          <FunctionImportMapping FunctionImportName="KullanıcıMakinaEkle" FunctionName="ITS_ServerModel.Store.KullanıcıMakinaEkle" />
+          <FunctionImportMapping FunctionImportName="KullanıcıMakinaGüncelle" FunctionName="ITS_ServerModel.Store.KullanıcıMakinaGüncelle" />
+          <FunctionImportMapping FunctionImportName="KullanıcıMakinaSil" FunctionName="ITS_ServerModel.Store.KullanıcıMakinaSil" />
+          <FunctionImportMapping FunctionImportName="KullanıcıSil" FunctionName="ITS_ServerModel.Store.KullanıcıSil" />
+          <FunctionImportMapping FunctionImportName="MakinaEkle" FunctionName="ITS_ServerModel.Store.MakinaEkle" />
+          <FunctionImportMapping FunctionImportName="MakinaGüncelle" FunctionName="ITS_ServerModel.Store.MakinaGüncelle" />
+          <FunctionImportMapping FunctionImportName="MakinaSil" FunctionName="ITS_ServerModel.Store.MakinaSil" />
+          <FunctionImportMapping FunctionImportName="PLCEkle" FunctionName="ITS_ServerModel.Store.PLCEkle" />
+          <FunctionImportMapping FunctionImportName="PLCGüncelle" FunctionName="ITS_ServerModel.Store.PLCGüncelle" />
+          <FunctionImportMapping FunctionImportName="PLCSil" FunctionName="ITS_ServerModel.Store.PLCSil" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="ITS_ServerModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="ITS_ServerModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="ITS_ServerModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="ITS_ServerModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ITS_ServerModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="ITS_ServerModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ITS_ServerModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_KontrolBasamagı" FunctionName="ITS_ServerModel.Store.sp_KontrolBasamagı" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ITS_ServerModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ITS_ServerModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="Test" FunctionName="ITS_ServerModel.Store.Test" />
+          <FunctionImportMapping FunctionImportName="ÜrünlerEkle" FunctionName="ITS_ServerModel.Store.ÜrünlerEkle" />
+          <FunctionImportMapping FunctionImportName="ÜrünlerGüncelle" FunctionName="ITS_ServerModel.Store.ÜrünlerGüncelle" />
+          <FunctionImportMapping FunctionImportName="ÜrünlerSil" FunctionName="ITS_ServerModel.Store.ÜrünlerSil" />
+          <EntitySetMapping Name="işemriListele">
+            <EntityTypeMapping TypeName="ITS_ServerModel.işemriListele">
+              <MappingFragment StoreEntitySet="işemriListele">
+                <ScalarProperty Name="KameraIP" ColumnName="KameraIP" />
+                <ScalarProperty Name="Kamera" ColumnName="Kamera" />
+                <ScalarProperty Name="InkjetPort" ColumnName="InkjetPort" />
+                <ScalarProperty Name="Inkjet" ColumnName="Inkjet" />
+                <ScalarProperty Name="EtiketIP" ColumnName="EtiketIP" />
+                <ScalarProperty Name="Etiket" ColumnName="Etiket" />
+                <ScalarProperty Name="MakinaIP" ColumnName="MakinaIP" />
+                <ScalarProperty Name="MFG" ColumnName="MFG" />
+                <ScalarProperty Name="ihracat" ColumnName="ihracat" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="SKT" ColumnName="SKT" />
+                <ScalarProperty Name="LOT" ColumnName="LOT" />
+                <ScalarProperty Name="ÜretimMiktarı" ColumnName="ÜretimMiktarı" />
+                <ScalarProperty Name="MaxSn" ColumnName="MaxSn" />
+                <ScalarProperty Name="SN" ColumnName="SN" />
+                <ScalarProperty Name="Ürün_Adı" ColumnName="Ürün Adı" />
+                <ScalarProperty Name="Makina" ColumnName="Makina" />
+                <ScalarProperty Name="İşEmriID" ColumnName="İşEmriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

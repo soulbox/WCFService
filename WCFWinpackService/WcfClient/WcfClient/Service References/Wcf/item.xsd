@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WcfServiceHost.Asansor" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WcfServiceHost.Asansor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PLC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DepoKapıDurumu" type="tns:PLC.KapıDurumları" />
+      <xs:element minOccurs="0" name="Hepsi" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1_1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1_2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1_3" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1_4" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1_5" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat1_6" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_3" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_4" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_5" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_6" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat2_7" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3_1" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3_2" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3_3" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3_4" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3_5" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Kat3_6" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ZeminKapıDurumu" type="tns:PLC.KapıDurumları" />
+      <xs:element minOccurs="0" name="isConnected" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ÇatıKapıDurumu" type="tns:PLC.KapıDurumları" />
+      <xs:element minOccurs="0" name="İmalatKapıDurumu" type="tns:PLC.KapıDurumları" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PLC" nillable="true" type="tns:PLC" />
+  <xs:simpleType name="PLC.KapıDurumları">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="boşta" />
+      <xs:enumeration value="Açılıyor" />
+      <xs:enumeration value="Kapanıyor" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PLC.KapıDurumları" nillable="true" type="tns:PLC.KapıDurumları" />
+</xs:schema>
